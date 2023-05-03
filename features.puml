@@ -1,0 +1,47 @@
+@startuml featureModel
+
+!log tentando fazer os modelos de features de acordo com a Api ReactFeature
+
+!function $alternativefeature($parent,$optional, $component,$resultlength)
+    !if($optional == 1 && $resultlength == 0) 
+      !return $optionalfeature($parent,1,$component)
+    !elseif(resultlength == 0)
+      !return ""
+    !else
+      !return $mandatoryfeature($parent, $children)    
+    !endif 
+!endfunction]
+
+!function $optionalfeature($parent, $aparecer, $component)
+    !if($aparecer == 1)
+        !return $component
+    !else
+       !return ""
+    !endif
+!endfunction
+
+!function $mandatoryfeature($parent, $children)
+    !return $children
+!endfunction
+
+
+!$parent = { "oi" : "meu amigo jonny"}
+
+!$children = { "banana" : "na caixa"}
+
+!$teste = "supercaligraphilistic"
+
+!$feature = { "name": "banana na caixa", "parent" : "donkey kong", "children" : "luigi" }
+
+!$relation = { "mandatory" : "oi", "optional" : 1, "alternative" : 0 }
+
+!log rescreve a variavel apenas se ela for undefined
+!$teste ?= "super"
+
+!log reatribui um novo valor na variável assim:
+!$teste = $parent.oi
+
+Alice -> Bob : This is $feature.parent
+Alice -> Bob : This is $teste
+
+@enduml
