@@ -2,28 +2,27 @@
 
 !log tentando fazer os modelos de features de acordo com a Api ReactFeature
 
-!function $alternativefeature($parent,$optional, $component,$resultlength)
-    !if($optional == 1 && $resultlength == 0) 
-      !return $optionalfeature($parent,1,$component)
-    !elseif(resultlength == 0)
-      !return ""
+!procedure $optionalfeature($feature, $aparecer)
+!if ($aparecer==1)
+  OptionalAparece -> $feature.children 
+!else
+  OptionalNaoAparece ->
+!endif
+!endprocedure
+
+!procedure $alternativefeature($feature,$optional,$resultlength)
+    !if ($optional==1) && ($resultlength==0) 
+      $optionalfeature($feature,1)
+    !elseif (resultlength==0) && ($optional==0)
+      princesa -> nao esta nesse castelo.
     !else
-      !return $mandatoryfeature($parent, $children)    
+      $mandatoryfeature($feature)    
     !endif 
-!endfunction]
+!endprocedure
 
-!function $optionalfeature($parent, $aparecer, $component)
-    !if($aparecer == 1)
-        !return $component
-    !else
-       !return ""
-    !endif
-!endfunction
-
-!function $mandatoryfeature($parent, $children)
-    !return $children
-!endfunction
-
+!procedure $mandatoryfeature($feature)
+    Mandatory -> $feature.children
+!endprocedure
 
 !$parent = { "oi" : "meu amigo jonny"}
 
@@ -31,9 +30,11 @@
 
 !$teste = "supercaligraphilistic"
 
-!$feature = { "name": "banana na caixa", "parent" : "donkey kong", "children" : "luigi" }
+!$feature = { "name": "banana na caixa", "parent" : "donkey kong", "children" : "luigi", "component": "meu componente" }
 
 !$relation = { "mandatory" : "oi", "optional" : 1, "alternative" : 0 }
+
+!$aparecer = 1
 
 !log rescreve a variavel apenas se ela for undefined
 !$teste ?= "super"
@@ -43,5 +44,11 @@
 
 Alice -> Bob : This is $feature.parent
 Alice -> Bob : This is $teste
+
+$mandatoryfeature($feature)
+
+$optionalfeature($feature, $aparecer)
+
+$alternativefeature($feature, 0, 0)
 
 @enduml

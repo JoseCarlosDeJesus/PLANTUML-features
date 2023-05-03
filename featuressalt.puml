@@ -1,0 +1,37 @@
+@startsalt featuremodel
+{
+
+!procedure $optionalfeature($feature, $aparecer)
+!if ($aparecer==1)
+  [Optional $feature.children] 
+!else
+  [Optional Nao Aparece]
+!endif
+!endprocedure
+
+!procedure $alternativefeature($feature,$optional,$resultlength)
+    !if ($optional==1) && ($resultlength==0) 
+      [Alternative $optionalfeature($feature,1)]
+    !elseif ($optional==0)
+      [Alternative princesa nao esta nesse castelo]
+    !else
+      [Alternative $mandatoryfeature($feature)]    
+    !endif 
+!endprocedure
+
+!procedure $mandatoryfeature($feature)
+    [Mandatory $feature.children]
+!endprocedure
+
+
+!$feature = { "name": "banana na caixa", "parent" : "donkey kong", "children" : "luigi", "component": "meu componente" }
+!$aparecer = 1
+
+$mandatoryfeature($feature)
+
+$optionalfeature($feature, $aparecer)
+$optionalfeature($feature, 0)
+
+$alternativefeature($feature, 2, 2)
+}
+@endsalt

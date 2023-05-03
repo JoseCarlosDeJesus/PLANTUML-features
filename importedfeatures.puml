@@ -1,0 +1,14 @@
+@startsalt importandoBiblioteca
+{
+!include featuressalt.puml
+
+!$feature = { "name": "banana na caixa", "parent" : "donkey kong", "children" : "Bacalhau", "component": "meu componente" }
+
+$optionalfeature($feature, 1)
+
+$mandatoryfeature($feature)
+
+$alternativefeature($feature, 1,0)
+
+}
+@endsalt
