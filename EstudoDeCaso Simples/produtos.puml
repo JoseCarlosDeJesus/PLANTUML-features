@@ -1,0 +1,39 @@
+@startsalt produtos
+{S
+    !log {S é a barra de rolagem
+    !log *{ é um menu!
+
+    !log não dá para colocar um input field dentro do header do plant
+
+    "Pesquise Aqui" |
+    
+    {* 
+      Produtos | Meu Carrinho | Meu Perfil
+    } 
+
+    
+    !log esses dois iguais é para fazer um marcador embaixo
+    ..
+    ==
+   !$produto1 = { "titulo": "Notebook Gamer Lenovo" ,"disponivel": 50, "valor": "R$4699", "imagem": "http://plantuml.com/logo3.png"}
+   !$produto2 = { "titulo": "Notebook Samsung Book" ,"disponivel": 20, "valor": "R$2549", "imagem": "http://plantuml.com/logo3.png"}
+   !log imagem do cachorro https://e7.pngegg.com/pngimages/90/669/png-clipart-do-not-catch-the-tongue-of-the-dog-pet-dog.png
+
+   !procedure listaprodutos($produto)
+   {^
+    <img:"$produto.imagem">
+    $produto.titulo
+    $produto.disponivel
+    $produto.valor
+    [Comprar]
+   } 
+   !endprocedure
+
+   !log acho que nao vai ter como passar uma funcao para minhas funcoes
+   
+   listaprodutos($produto1)
+   listaprodutos($produto2)
+ 
+
+}
+@endsalt

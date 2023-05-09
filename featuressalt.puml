@@ -30,7 +30,6 @@
 $mandatoryfeature($feature)
 
 $optionalfeature($feature, $aparecer)
-$optionalfeature($feature, 0)
 
 $alternativefeature($feature, 2, 2)
 }

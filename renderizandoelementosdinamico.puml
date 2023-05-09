@@ -1,0 +1,10 @@
+@startsalt elementos
+{
+    !procedure $renderiza($leftbracket,$rightbracket,$midlelement)
+        $leftbracket $midlelement $rightbracket
+    !endprocedure
+
+    $renderiza("[","]","botao")
+
+}
+@endsalt

@@ -1,6 +1,6 @@
 @startsalt importandoBiblioteca
 {
-!include featuressalt.puml
+!include https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/featuressalt.puml
 
 !$feature = { "name": "banana na caixa", "parent" : "donkey kong", "children" : "Bacalhau", "component": "meu componente" }
 

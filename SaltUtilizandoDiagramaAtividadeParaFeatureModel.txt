@@ -1,0 +1,166 @@
+I used this to resolve my issue
+
+@startuml
+!$app="Application"
+!$corp="Corporate"
+!unquoted procedure SALT($x)
+"{{
+salt
+%invoke_procedure("_"+$x)
+}}"
+!endprocedure
+
+!procedure _model()
+{+
+<b>Product Model
+[Buy Product]
+}
+!endprocedure
+
+!procedure _gate()
+{+
+<b>$app Gateway
+{
+Email | "xxx@foo.com   "
+. | [Continue]
+}
+}
+!endprocedure
+
+!procedure _ciamLogin()
+{+
+<b>$corp Login
+{
+Email | "xxx@foo.com   "
+Password | "***   "
+. | [Continue]
+. | <i>Signup
+}
+}
+!endprocedure
+
+!procedure _ciamProfile()
+{+
+<b>$corp Profile
+{
+First Name | "......   "
+Last Name | "......   "
+Country | "......   "
+...
+. | [Continue]
+}
+}
+!endprocedure
+
+!procedure _ciamPassword()
+{+
+<b>$corp Set Password
+{
+Password | "******   "
+Confirm Password | "******  "
+. | [Continue]
+}
+}
+!endprocedure
+
+!procedure _appProfile()
+{+
+<b>$app Profile
+{
+First Name | "......   " | [Edit Profile]
+Last Name | "......   " | .
+Country | "......   " | .
+...
+Facility | "...... " | .
+[OK] | [Cancel]
+}
+}
+!endprocedure
+
+!procedure _azureLogin()
+{+
+<b>Azure Login
+{
+Email | "xxx@foo.com   "
+Password | "***   "
+. | [Continue]
+}
+}
+!endprocedure
+
+|C| CIAM
+|A| Application
+|Z| Azure
+
+|A|
+start
+: Buy Product
+
+{{
+salt
+%invoke_procedure(_model)
+}}
+;
+
+: Gateway
+
+{{
+salt
+%invoke_procedure(_gate)
+}}
+;
+
+if(Is Internal User) then (external)
+    |C|
+    : CIAM Login
+
+    {{
+    salt
+    %invoke_procedure(_ciamLogin)
+    }}
+    ;
+
+    if(Signup) then (yes)
+        : CIAM Profile
+
+        {{
+        salt
+        %invoke_procedure(_ciamProfile)
+        }}
+        ;
+
+        :Email Set Password;
+
+        : Set Password
+        {{
+        salt
+        %invoke_procedure(_ciamPassword)
+        }}
+        ;
+    else (no)
+    endif
+else (internal)
+    |Z|
+    : Azure Login
+
+    {{
+    salt
+    %invoke_procedure(_azureLogin)
+    }}
+    ;
+endif
+|A|
+
+: $app Profile
+
+{{
+salt
+%invoke_procedure(_appProfile)
+}}
+;
+
+: Email Registrar;
+
+stop
+
+@enduml

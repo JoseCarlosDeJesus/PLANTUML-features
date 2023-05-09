@@ -1,0 +1,28 @@
+@startsalt produtos
+{+
+
+    {/ <b>Produtos
+    Meu carrinho
+    Meu Perfil} |
+
+   { 
+   !$produto1 = { "titulo": "Notebook Gamer Lenovo" ,"disponivel": 50, "valor": "R$4699", "imagem": "http://plantuml.com/logo3.png"}
+   !$produto2 = { "titulo": "Notebook Samsung Book" ,"disponivel": 20, "valor": "R$2549", "imagem": "http://plantuml.com/logo3.png"}
+   
+   !log a forma que é listada os produtos seria uma feature mandatoria
+   !procedure listaprodutos($produto)
+   {^
+    <img:"$produto.imagem">
+    $produto.titulo
+    $produto.disponivel
+    $produto.valor
+    [Comprar]
+   } 
+   !endprocedure
+   
+   listaprodutos($produto1)
+   listaprodutos($produto2)
+   } 
+
+}
+@endsalt
