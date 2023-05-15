@@ -1,10 +1,25 @@
 @startsalt elementos
 {
-    !procedure $renderiza($leftbracket,$rightbracket,$midlelement)
-        $leftbracket $midlelement $rightbracket
+    !unquoted procedure $renderiza($leftbracket,$rightbracket,$midlelement,)
+            $leftbracket %newline() $midlelement $rightbracket
     !endprocedure
 
-    $renderiza("[","]","botao")
+    !unquoted procedure $render($multi, $leftbracket, $midlelement, $rightbracket)
+    !if ($multi==1)
+         $leftbracket %newline() $midlelement $rightbracket
+    !else
+        $leftbracket $midlelement $rightbracket
+    !endif    
+
+    !endprocedure
+
+
+    $render(0, [, "botao",])
+    $render(1, {T-,"Descrição | Quantidade | Valor | Total %newline() Notebook  |  1 | 69 |30 %newline() Maçã | 1 | 89 | 90",})
+    %newline()
+   
+   "new %newline() funciona"
+    
 
 }
 @endsalt

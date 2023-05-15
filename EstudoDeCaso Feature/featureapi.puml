@@ -1,0 +1,44 @@
+@startsalt featureapi
+{
+    !unquoted procedure $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
+    !if ($multi==1)
+         $leftbracket %newline() $midlelement $rightbracket
+    !else
+        $leftbracket $midlelement $rightbracket
+    !endif    
+
+    !endprocedure
+
+    !unquoted procedure $optional($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)
+        !if ($aparecer==1)
+            $mandatory($multi, $leftbracket, $midlelement, $rightbracket) 
+        !else
+            [Optional Nao Aparece]
+        !endif
+    !endprocedure
+
+    !unquoted procedure $alternative($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative)
+        !if ($plataforma==0) 
+             $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
+        !elseif ($plataforma==1)
+            $mandatory($multi, $leftalternative, $midlealternative, $rightalternative)   
+        !endif 
+    !endprocedure
+
+    !log nesse caso estou considerando que a feature que diz se é desktop ou mobile é a feature pai de todos os elementos renderizados.
+
+    !log a variavel que representa isso é chamada de plataforma, 0 é desktop e 1 é mobile
+
+    !log exemplo de uma tabela um elemento do salt multilinha
+    $mandatory(1, {T-,"Descrição | Quantidade | Valor | Total %newline() Notebook  |  1 | 69 |30 %newline() Maçã | 1 | 89 | 90",})
+    
+    !log um exemplo de como usar um elemento do salt simples
+    $mandatory(0,[,"botao",])
+
+    !log exemplo de elemento simples opcional
+    $optional(0,[,"opcional show",],1)
+
+    $alternative(0,[,"desktop",],0,[,"mobile",])
+
+}
+@endsalt

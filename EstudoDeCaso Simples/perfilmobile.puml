@@ -1,0 +1,13 @@
+@startsalt perfil
+{
+    
+   {* <&menu> | <&cart> } 
+    ..
+    ==
+   !log newline assim jogada nao faz nada precisa estar em outra coisa 
+   %newline()
+
+    "Nome: Fulano %newline() de Tal"
+    Endereço: Gotham City
+}
+@endsalt

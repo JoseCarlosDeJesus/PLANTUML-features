@@ -1,0 +1,21 @@
+@startsalt carrinho
+{S
+
+   {* <&menu> | <&cart>} 
+    
+    ..
+    ==
+
+    !log T é tabela
+   {T-
+        Descrição | Quantidade | Valor | Total
+        Notebook  |  1 | 69 |30
+        Maçã | 1 | 89 | 90
+        Livro | 3| 67 | 187
+   }
+   Total | R$ 898990
+
+   [Confirmar Compra]
+
+}
+@endsalt
