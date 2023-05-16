@@ -1,6 +1,6 @@
-@startsalt carrinho personalizado
-{S
-    !unquoted procedure $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
+@startsalt perfilfeature
+{
+!unquoted procedure $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
     !if ($multi==1)
          $leftbracket %newline() $midlelement $rightbracket
     !else
@@ -30,9 +30,6 @@
 
     $alternative(1,{*,Produtos | <b>Meu Carrinho | Meu Perfil,},$desktop,{*,<&menu> | <&cart>,},0)
 
-    $mandatory(1, {T-,"Descrição | Quantidade | Valor | Total %newline() Notebook  |  1 | 69 |30 %newline() Maçã | 1 | 89 | 90",})
-    $mandatory(0,"","Total | R$ 898990","")
-    $mandatory(0,[,"Confirmar Compra",])
-
+    $mandatory(0,"","Nome:Fulano de Tal %newline() Endereço: Gotham City","")
 }
 @endsalt
