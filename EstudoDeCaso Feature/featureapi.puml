@@ -12,8 +12,6 @@
     !unquoted procedure $optional($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)
         !if ($aparecer==1)
             $mandatory($multi, $leftbracket, $midlelement, $rightbracket) 
-        !else
-            [Optional Nao Aparece]
         !endif
     !endprocedure
 
