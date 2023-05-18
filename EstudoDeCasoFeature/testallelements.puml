@@ -1,0 +1,70 @@
+@startsalt testandotodoselementos
+{
+     !unquoted procedure $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
+    !if ($multi==1)
+         $leftbracket %newline() $midlelement $rightbracket
+    !else
+        $leftbracket $midlelement $rightbracket
+    !endif    
+
+    !endprocedure
+
+    !unquoted procedure $optional($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)
+        !if ($aparecer==1)
+            $mandatory($multi, $leftbracket, $midlelement, $rightbracket) 
+        !endif
+    !endprocedure
+
+    !unquoted procedure $alternative($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative,$multialternative)
+        !if ($plataforma==0) 
+             $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
+        !elseif ($plataforma==1)
+            $mandatory($multialternative, $leftalternative, $midlealternative, $rightalternative)   
+        !endif 
+    !endprocedure
+
+    !unquoted procedure $mandatoryInput($midlelement)
+        "$midlelement"
+    !endprocedure
+
+    !unquoted procedure $optionalInput($midlelement, $aparecer)
+        !if ($aparecer==1)
+            $mandatoryInput($midlelement) 
+        !endif
+    !endprocedure
+
+    !unquoted procedure $alternativeInput($midlelement, $plataforma, $midlealternative)
+        !if ($plataforma==0) 
+             $mandatoryInput($midlelement)
+        !elseif ($plataforma==1)
+            $mandatoryInput($midlealternative)   
+        !endif 
+    !endprocedure
+
+    !procedure $oi($midlelement)
+    {^
+        $midlelement
+    }
+    !endprocedure
+
+   !log elementos basicos representados utilizando minha funcao
+    $mandatory(0,"", Just plain Text,"")
+    $mandatory(0,[, This is my button,])
+    $mandatory(0,(),Unchecked radio,"")
+    $mandatory(0,(X),checked radio,"")
+    $mandatory(0,[],Unchecked box,"")
+    $mandatory(0,[X],checked box, "")
+    $mandatoryInput(Enter text here)
+    $mandatory(0,^,This is a droplist,^)
+
+    !log testando como colocar elementos na mesma linha
+    $mandatory(0,"","Login: | [my name]", "")
+    $mandatory(0,"Login: |", "[my name]", "")
+    $mandatory(0,"[cancel] |","[Ok]", "")
+    
+    !log %chr(34) e a aspas em ascii
+    $mandatory(0,[,"This is an %chr(34) escape %chr(34) of a double-quote",])
+
+    $mandatory(0,"","Login : | %chr(34) my name %chr(34)","")
+}
+@endsalt

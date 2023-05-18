@@ -1,5 +1,5 @@
-@startsalt produtosfeature
-{S
+@startsalt featuredefinitive
+{
     !unquoted procedure $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
     !if ($multi==1)
          $leftbracket %newline() $midlelement $rightbracket
@@ -23,21 +23,24 @@
         !endif 
     !endprocedure
 
+    !unquoted procedure $mandatoryInput($midlelement)
+        "$midlelement"
+    !endprocedure
 
-    !$desktop = 0
-    !$aparecer = 1
-    !$produto1 = { "titulo": "Notebook Gamer Lenovo" ,"disponivel": 50, "valor": "R$4699", "imagem": "http://plantuml.com/logo3.png"}
-    !$produto2 = { "titulo": "Notebook Samsung Book" ,"disponivel": 20, "valor": "R$2549", "imagem": "http://plantuml.com/logo3.png"}
+    !unquoted procedure $optionalInput($midlelement, $aparecer)
+        !if ($aparecer==1)
+            $mandatoryInput($midlelement) 
+        !endif
+    !endprocedure
 
-    $optional(0,"","%chr(34) Pesquise Aqui %chr(34)","",$aparecer) |
-    $alternative(1,{*,Produtos | <b>Meu Carrinho | Meu Perfil,},$desktop,{*,"<&menu> | <&cart> %newline() <&menu> | Produtos | Meu Carrinho | - | Meu Perfil",},0)
+    !unquoted procedure $alternativeInput($midlelement, $plataforma, $midlealternative)
+        !if ($plataforma==0) 
+             $mandatoryInput($midlelement)
+        !elseif ($plataforma==1)
+            $mandatoryInput($midlealternative)   
+        !endif 
+    !endprocedure
 
-    $mandatory(0,"",..,"")
-    $mandatory(0,"",==,"")
 
-    {
-    $mandatory(1,{^,"<img:$produto1.imagem> %newline() $produto1.titulo %newline() $produto1.disponivel %newline() $produto1.valor %newline() [Comprar]",})
-    $mandatory(1,{^,"<img:$produto2.imagem> %newline() $produto2.titulo %newline() $produto2.disponivel %newline() $produto2.valor %newline() [Comprar]",})
-    } 
 }
 @endsalt
