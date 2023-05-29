@@ -21,6 +21,7 @@
 
    !procedure listaprodutos($produto)
    {^
+    <img:"$produto.imagem">
     $produto.titulo
     $produto.disponivel
     $produto.valor

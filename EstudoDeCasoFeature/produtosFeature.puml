@@ -29,7 +29,7 @@
     !$produto1 = { "titulo": "Notebook Gamer Lenovo" ,"disponivel": 50, "valor": "R$4699", "imagem": "http://plantuml.com/logo3.png"}
     !$produto2 = { "titulo": "Notebook Samsung Book" ,"disponivel": 20, "valor": "R$2549", "imagem": "http://plantuml.com/logo3.png"}
 
-    $optional(0,"","%chr(34) Pesquise Aqui %chr(34)","",$aparecer) |
+    $optional(0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer) |
     $alternative(1,{*,Produtos | <b>Meu Carrinho | Meu Perfil,},$desktop,{*,"<&menu> | <&cart> %newline() <&menu> | Produtos | Meu Carrinho | - | Meu Perfil",},0)
 
     $mandatory(0,"",..,"")
