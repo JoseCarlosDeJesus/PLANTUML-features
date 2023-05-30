@@ -1,5 +1,5 @@
-@startsalt featuredefinitive
-{
+@startsalt jsonexample
+{   
     !unquoted procedure $mandatory($multiline, $leftbracket, $midlelement, $rightbracket)
     !if ($multiline==1)
          $leftbracket %newline() $midlelement $rightbracket
@@ -8,19 +8,6 @@
     !endif    
     !endprocedure
 
-    !unquoted procedure $optional($multiline, $leftbracket, $midlelement, $rightbracket, $rule)
-        !if ($rule==1)
-            $mandatory($multiline, $leftbracket, $midlelement, $rightbracket) 
-        !endif
-    !endprocedure
-
-    !unquoted procedure $alternative($multiline,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative,$multialternative)
-        !if ($rule==0) 
-             $mandatory($multiline, $leftbracket, $midlelement, $rightbracket)
-        !elseif ($rule==1)
-            $mandatory($multialternative, $leftalternative, $midlealternative, $rightalternative)   
-        !endif 
-    !endprocedure
 
     !procedure $mandatoryJson($json)
     !if ($json.multiline==1)
@@ -43,5 +30,14 @@
             $mandatory($json.multialternative, $json.leftalternative, $json.midlealternative, $json.rightalternative)   
         !endif 
     !endprocedure
+
+    !$variavelexemplo = { "multiline": 0, "leftbracket": "[", "midlelement": "json mandatorio", "rightbracket": "]"}
+    !$variavelexemplo1 = { "multiline": 0, "leftbracket": "[", "midlelement": "json opcional", "rightbracket": "]", "rule": 1}
+    !$variavelalternativa = { "multiline": 0, "leftbracket": "[", "midlelement": "ui luigi", "rightbracket": "]", "rule": 1 , "multialternative": 0, "leftalternative": "{*", "midlealternative": "<&menu> | <&cart>", "rightalternative": "}"}
+
+    $mandatoryJson($variavelexemplo)
+    $optionalJson($variavelexemplo1)
+    $alternativeJson($variavelalternativa)
+
 }
 @endsalt
