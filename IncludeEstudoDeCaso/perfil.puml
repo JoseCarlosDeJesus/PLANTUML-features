@@ -1,0 +1,15 @@
+@startsalt perfilInclude
+{
+
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/oldFeatures.puml
+
+    !$aparecer = 1
+    !$desktop = 0
+
+    $optional(0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer)
+
+    $alternative(1,{*,Produtos | <b>Meu Carrinho | Meu Perfil,},$desktop,{*,<&menu> | <&cart>,},0)
+
+    $mandatory(0,"","Nome:Fulano de Tal %newline() Endereço: Gotham City","")
+}
+@endsalt
