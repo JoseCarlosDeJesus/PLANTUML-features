@@ -1,6 +1,6 @@
 @startsalt featuredefinitive
 {
-    !unquoted procedure $mandatory($multiline, $leftbracket, $midlelement, $rightbracket)
+    !unquoted procedure $mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket)
     !if ($multiline==1)
          $leftbracket %newline() $midlelement $rightbracket
     !else
@@ -8,13 +8,13 @@
     !endif    
     !endprocedure
 
-    !unquoted procedure $optional($multiline, $leftbracket, $midlelement, $rightbracket, $rule)
+    !unquoted procedure $optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule)
         !if ($rule==1)
             $mandatory($multiline, $leftbracket, $midlelement, $rightbracket) 
         !endif
     !endprocedure
 
-    !unquoted procedure $alternative($multiline,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative,$multialternative)
+    !unquoted procedure $alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative,$multialternative)
         !if ($rule==0) 
              $mandatory($multiline, $leftbracket, $midlelement, $rightbracket)
         !elseif ($rule==1)
@@ -43,5 +43,7 @@
             $mandatory($json.multialternative, $json.leftalternative, $json.midlealternative, $json.rightalternative)   
         !endif 
     !endprocedure
+
+    !log como vou pegar os nomes dos parametros nas funcoes json?
 }
 @endsalt
