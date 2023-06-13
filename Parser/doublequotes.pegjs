@@ -1,6 +1,6 @@
 start = doublequote
 
-doublequote = '"' chars:DoubleStringCharacter* '"'
+doublequote = '"' chars:DoubleStringCharacter* '"' { return chars.join(""); }
 
 DoubleStringCharacter
   = !('"' / "\\") char:. { return char; }
