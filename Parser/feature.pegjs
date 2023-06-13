@@ -11,8 +11,8 @@ umlline
   / AlternativeJsonFunction
   / plantumlfile
   / commentline { return null }
-  / emptyline { return null }
-  / emptyline1 {return null }
+  // emptyline { return null }
+  / emptyline {return null }
 
 startblock
   = noise [{] noise
@@ -33,17 +33,19 @@ alphabet
   /[0-9]
   / [\s]
   / [\S]
-  / ":"
-  / "%"
-  / "/"
-  / "."
-  / ","
-  / "("
-  / ")"
+  // ":"
+  // "%"
+  // "/"
+  // "."
+  // ","
+  // "("
+  // ")"
   / "ç"
-  / "^[a-zA-Z0-9!@#$&()-`.+,/\"]*$"
-  / "-"
+  // "^[a-zA-Z0-9!@#$&()-`.+,/\"{}]*$"
+  // "-"
   / "\n"
+  // "$"
+  / $([a-zA-Z0-9!@#$&%:()-`.+,/\"{}|])
   
 doublequote
  = '"'
@@ -62,10 +64,14 @@ _ "whitespace"
   
 virgula
   = ","
-emptyline
+
+/*emptyline1
   = "^(?:[\t ]*(?:\r?\n|\r))+"
-  
-emptyline1 = "\n"  
+*/
+
+emptyline = "\n"  
+
+number = [0-9]
   
 parameters
   = namecomponent: quotedparameter + virgula + multiline:[0-9]+ virgula + quotedparameter + virgula + quotedparameter + virgula + quotedparameter
@@ -82,7 +88,7 @@ MandatoryFunction = "$mandatory("+ namecomponent: quotedparameter + virgula + mu
 	return `<MandatoryFeature component=${namecomponent}/>`;
 } 
 
-AlternativeFunction = "$alternative(" newline{
+AlternativeFunction = "$alternative(" + namecomponent: quotedparameter + virgula + multiline:[0-9]+ virgula + quotedparameter + virgula + quotedparameter + virgula + quotedparameter + rule:number + virgula + namealternative:quotedparameter + virgula + quotedparameter + virgula + quotedparameter + virgula + quotedparameter + virgula + number + ")" newline{
 	return "fuck you";
 }
 
