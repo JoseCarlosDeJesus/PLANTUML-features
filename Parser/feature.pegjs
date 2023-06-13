@@ -10,7 +10,10 @@ umlline
   / OptionalJsonFunction
   / AlternativeJsonFunction
   / plantumlfile
-  
+  / commentline { return null }
+  / emptyline { return null }
+  / emptyline1 {return null }
+
 startblock
   = noise [{] noise
 endblock
@@ -23,27 +26,63 @@ newline
   = [\r\n]
   / [\n]
 
-Integer "integer"
-  = _ [0-9]+ { return parseInt(text(), 10); }
+alphabet
+  = [a-z]
+  / [A-Z]
+  / " "
+  /[0-9]
+  / [\s]
+  / [\S]
+  / ":"
+  / "%"
+  / "/"
+  / "."
+  / ","
+  / "("
+  / ")"
+  / "ç"
+  / "^[a-zA-Z0-9!@#$&()-`.+,/\"]*$"
+  / "-"
+  / "\n"
+  
+doublequote
+ = '"'
 
+commentline
+  = noise "'" [^\r\n]+ noise
+  / noise ".." [^\r\n\.]+ ".." noise
+  / noise "--" [^\r\n\-]+ "--" noise
+  / noise "__" [^\r\n\_]+ "__" noise
+  
+quotedparameter
+ = doublequote + alphabet + doublequote
+ 
 _ "whitespace"
   = [ \t\n\r]*
   
-plantumlfile = items: ("@startsalt" noise newline filelines:umllines noise "@endsalt" noise) {
- for (var i = 0; i < items.length; i++)
- { if (items[i] === null) { items.splice(i, 1); i--; } }
- return items
+virgula
+  = ","
+emptyline
+  = "^(?:[\t ]*(?:\r?\n|\r))+"
+  
+emptyline1 = "\n"  
+  
+parameters
+  = namecomponent: quotedparameter + virgula + multiline:[0-9]+ virgula + quotedparameter + virgula + quotedparameter + virgula + quotedparameter
+  
+plantumlfile = "@startsalt" noise newline "{" newline filelines:umllines noise "@endsalt" noise {
+ return filelines ;
 }
 
 umllines
   = lines:(umlline*) { for (var i = 0; i < lines.length; i++) { if (lines[i]===null) { lines.splice(i, 1); i--; } } return lines; }
 
 
-MandatoryFunction = "[q#" id:[0-9]+ "]" {
-	return "<MandatoryFeature component= />";
+MandatoryFunction = "$mandatory("+ namecomponent: quotedparameter + virgula + multiline:[0-9]+ virgula + quotedparameter + virgula + quotedparameter + virgula + quotedparameter + ")" newline {
+	return `<MandatoryFeature component=${namecomponent}/>`;
 } 
 
-AlternativeFunction = "fuck you" newline{
+AlternativeFunction = "$alternative(" newline{
 	return "fuck you";
 }
 

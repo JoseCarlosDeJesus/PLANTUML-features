@@ -14,7 +14,7 @@
         !endif
     !endprocedure
 
-    !unquoted procedure $alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative,$multialternative)
+    !unquoted procedure $alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative)
         !if ($rule==0) 
              $mandatoryInternal($multiline, $leftbracket, $midlelement, $rightbracket)
         !elseif ($rule==1)

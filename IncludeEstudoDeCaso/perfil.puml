@@ -6,10 +6,10 @@
     !$aparecer = 1
     !$desktop = 0
 
-    $optional("nome",0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer)
+    $optional("BarraPesquisa",0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer)
 
-    $alternative("outronome",1,{*,Produtos | <b>Meu Carrinho | Meu Perfil,},$desktop,{*,<&menu> | <&cart>,},0)
+    $alternative("menuDesktop",1,{*,Produtos | <b>Meu Carrinho | Meu Perfil,},$desktop,"menuNavbar",{*,<&menu> | <&cart>,},0)
 
-    $mandatory("aindaoutronome",0,"","Nome:Fulano de Tal %newline() Endereço: Gotham City","")
+    $mandatory("PerfilUsuario",0,"","Nome:Fulano de Tal %newline() Endereço: Gotham City","")
 }
 @endsalt
