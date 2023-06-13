@@ -22,6 +22,12 @@ splitter
 newline
   = [\r\n]
   / [\n]
+
+Integer "integer"
+  = _ [0-9]+ { return parseInt(text(), 10); }
+
+_ "whitespace"
+  = [ \t\n\r]*
   
 plantumlfile = items: ("@startsalt" noise newline filelines:umllines noise "@endsalt" noise) {
  for (var i = 0; i < items.length; i++)

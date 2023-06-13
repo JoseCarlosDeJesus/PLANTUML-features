@@ -1,7 +1,6 @@
 @startsalt produtosInclude
 {S
-    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/oldFeatures.puml
-
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
     !$desktop = 0
     !$aparecer = 1
     !$produto1 = { "titulo": "Notebook Gamer Lenovo" ,"disponivel": 50, "valor": "R$4699", "imagem": "http://plantuml.com/logo3.png"}

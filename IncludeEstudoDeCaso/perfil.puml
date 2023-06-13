@@ -1,7 +1,7 @@
 @startsalt perfilInclude
 {
 
-    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/oldFeatures.puml
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
 
     !$aparecer = 1
     !$desktop = 0

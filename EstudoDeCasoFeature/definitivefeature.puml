@@ -10,15 +10,15 @@
 
     !unquoted procedure $optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule)
         !if ($rule==1)
-            $mandatory($multiline, $leftbracket, $midlelement, $rightbracket) 
+            $mandatoryInternal($multiline, $leftbracket, $midlelement, $rightbracket) 
         !endif
     !endprocedure
 
     !unquoted procedure $alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative,$multialternative)
         !if ($rule==0) 
-             $mandatory($multiline, $leftbracket, $midlelement, $rightbracket)
+             $mandatoryInternal($multiline, $leftbracket, $midlelement, $rightbracket)
         !elseif ($rule==1)
-            $mandatory($multialternative, $leftalternative, $midlealternative, $rightalternative)   
+            $mandatoryInternal($multialternative, $leftalternative, $midlealternative, $rightalternative)   
         !endif 
     !endprocedure
 
@@ -40,7 +40,29 @@
         !if ($json.rule==0) 
              $mandatoryJson($json)
         !elseif ($json.rule==1)
-            $mandatory($json.multialternative, $json.leftalternative, $json.midlealternative, $json.rightalternative)   
+            $mandatoryInternal($json.multialternative, $json.leftalternative, $json.midlealternative, $json.rightalternative)   
+        !endif 
+    !endprocedure
+
+    !unquoted procedure $mandatoryInternal($multiline, $leftbracket, $midlelement, $rightbracket)
+    !if ($multiline==1)
+         $leftbracket %newline() $midlelement $rightbracket
+    !else
+        $leftbracket $midlelement $rightbracket
+    !endif    
+    !endprocedure
+
+     !unquoted procedure $optionalInternal($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)
+        !if ($aparecer==1)
+            $mandatoryInternal($multi, $leftbracket, $midlelement, $rightbracket) 
+        !endif
+    !endprocedure
+
+    !unquoted procedure $alternativeInternal($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative, $multialternative)
+        !if ($plataforma==0) 
+             $mandatoryInternal($multi, $leftbracket, $midlelement, $rightbracket)
+        !elseif ($plataforma==1)
+            $mandatoryInternal($multialternative, $leftalternative, $midlealternative, $rightalternative)   
         !endif 
     !endprocedure
 
