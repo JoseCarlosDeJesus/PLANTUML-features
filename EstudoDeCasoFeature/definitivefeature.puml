@@ -66,6 +66,23 @@
         !endif 
     !endprocedure
 
-    !log como vou pegar os nomes dos parametros nas funcoes json?
+    !unquoted procedure $mandatoryInput($midlelement)
+        "$midlelement"
+    !endprocedure
+
+    !unquoted procedure $optionalInput($midlelement, $aparecer)
+        !if ($aparecer==1)
+            $mandatoryInput($midlelement) 
+        !endif
+    !endprocedure
+
+    !unquoted procedure $alternativeInput($midlelement, $plataforma, $midlealternative)
+        !if ($plataforma==0) 
+             $mandatoryInput($midlelement)
+        !elseif ($plataforma==1)
+            $mandatoryInput($midlealternative)   
+        !endif 
+    !endprocedure
+
 }
 @endsalt

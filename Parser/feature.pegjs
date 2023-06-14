@@ -17,9 +17,10 @@ umlline
   / MandatoryJsonFunction
   / OptionalJsonFunction
   / AlternativeJsonFunction
-  / plantumlfile
   / commentline { return null }
   / emptyline {return null }
+  / include {return null }
+  / log {return null}
 
 startblock
   = noise [{] noise
@@ -99,3 +100,19 @@ OptionalJsonFunction = "OptionalJson Function" newline {
 AlternativeJsonFunction = "AlternativeJson Function" newline {
 	return "alternative json";
 }
+
+LineOfText = text:$(char+) EOL
+   { return text }
+
+// this part is to the include part.
+char = [^\n\r]
+newline1 = '\n' / '\r' '\n'?
+EOL = newline1 / !.
+
+include
+ = "!include" LineOfText
+ / "!include_many" LineOfText
+ / "!include_once" LineOfText
+ 
+log
+ = "!log" LineOfText
