@@ -5,9 +5,10 @@
     !$aparecer = 1
     !$desktop = 0
 
-    !$olala = {"namecomponent": "BarraPesquisa", "multiline": 0, "leftbracket": "","midlelement": "%chr(34) Pesquise Aqui %chr(34) |","rightbracket": "", "rule": 1}
+    !$ora = { "multiline": 0, "leftbracket": "", "midlelement": "%chr(34) Pesquise Aqui %chr(34) |", "rightbracket": "", "rule": 1}
+    !$variavelexemplo1 = { "multiline": 0, "leftbracket": "[", "midlelement": "json opcional", "rightbracket": "]", "rule": 1}
 
-    !$optionalJson($olala)
+    !$optionalJson($ora)
 
     $alternative("menuDesktop",1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil","}",$desktop,"menuNavbar","{*","<&menu> | <&cart>","}",0)
 

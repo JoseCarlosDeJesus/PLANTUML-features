@@ -70,11 +70,11 @@ MandatoryFunction =  "$mandatory(" + namecomponent:doublequote + virgula + multi
 	return `<MandatoryFeature component=${namecomponent}/>`;
 } 
 
-AlternativeFunction = "$alternative(" + namecomponent:doublequote + virgula + multiline:numberOrVariable + virgula + leftbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote + virgula + rule:numberOrVariable + virgula +  namealternative:doublequote + virgula + leftalternative:doublequote + virgula + midlealternative:doublequote + virgula + rightalternative:doublequote + virgula + multialternative:numberOrVariable + ")" newline{
+AlternativeFunction = "$alternative(" + namecomponent:doublequote + virgula + multiline:numberOrVariable + virgula + leftbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote + virgula + rule:numberOrVariable1 +  namealternative:doublequote + virgula + leftalternative:doublequote + virgula + midlealternative:doublequote + virgula + rightalternative:doublequote + virgula + multialternative:numberOrVariable + ")" newline{
 	return `<AlternativeFeature components={[{component:${namecomponent}, rule: },{component:${namealternative}, rule: }]} rule={${rule}}/>`;
 }
 
-OptionalFunction = "$optional(" + namecomponent:doublequote + virgula + multiline:[a-zA-Z0-9-$] + virgula + leftbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote + virgula + rule:[a-zA-Z0-9-$] + ")"  newline{
+OptionalFunction = "$optional(" + namecomponent:doublequote + virgula + multiline:[a-zA-Z0-9-$] + virgula + leftbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote + virgula + rule:numberOrVariable2 newline{
 	return `<OptionalFeature component=${namecomponent} rules={${rule}}/>`;
 }
 
@@ -101,6 +101,10 @@ OptionalJsonFunction = "OptionalJson Function" newline {
 AlternativeJsonFunction = "AlternativeJson Function" newline {
 	return "alternative json";
 }
+
+numberOrVariable2 = chars:numberOrVariable* ")" { return chars.join(""); }
+
+numberOrVariable1 = chars:numberOrVariable* "," { return chars.join(""); }
 
 numberOrVariable
  = char:[a-zA-Z0-9-$] {return char;}
