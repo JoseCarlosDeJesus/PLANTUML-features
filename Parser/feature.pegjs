@@ -68,12 +68,12 @@ MandatoryFunction =  "$mandatory(" + namecomponent:doublequote + virgula + multi
 	return `<MandatoryFeature component=${namecomponent}/>`;
 } 
 
-AlternativeFunction = "fuck you" {
-	return "fuck you";
+AlternativeFunction = "$alternative(" + namecomponent:doublequote + virgula + multiline:[a-zA-Z0-9-$] + virgula + leftbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote + virgula + rule:[a-zA-Z0-9-$] + virgula +  namealternative:doublequote + virgula + leftalternative:doublequote + virgula + midlealternative:doublequote + virgula + rightalternative:doublequote + virgula + multialternative:[a-zA-Z0-9-$] + ")" newline{
+	return `<AlternativeFeature components={[{component:${namecomponent}, rule: },{component:${namealternative}, rule: }]} rule={${rule}}/>`;
 }
 
-OptionalFunction = "Badass" newline {
-	return "badass";
+OptionalFunction = "$optional(" + namecomponent:doublequote + virgula + multiline:[a-zA-Z0-9-$] + virgula + leftbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote + virgula + rule:[a-zA-Z0-9-$] + ")"  newline{
+	return `<OptionalFeature component=${namecomponent} rules={${rule}}/>`;
 }
 
 MandatoryInputFunction = "oi meu amigo" newline {
