@@ -1,5 +1,17 @@
 @startsalt perfilJson
 {
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    !$aparecer = 1
+    !$desktop = 0
+
+    !$olala = {"namecomponent": "BarraPesquisa", "multiline": 0, "leftbracket": "","midlelement": "%chr(34) Pesquise Aqui %chr(34) |","rightbracket": "", "rule": 1}
+
+    !$optionalJson($olala)
+
+    $alternative("menuDesktop",1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil","}",$desktop,"menuNavbar","{*","<&menu> | <&cart>","}",0)
+
+    $mandatory("PerfilUsuario",0,"","Nome:Fulano de Tal %newline() Endereço: Gotham City","")
 
 }
 @endsalt

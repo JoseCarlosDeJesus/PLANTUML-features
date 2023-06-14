@@ -22,7 +22,7 @@
         !endif 
     !endprocedure
 
-    !procedure $mandatoryJsonInternal($json)
+    !procedure $mandatoryJson($json)
     !if ($json.multiline==1)
          $json.leftbracket %newline() $json.midlelement $json.rightbracket
     !else
@@ -30,13 +30,13 @@
     !endif    
     !endprocedure
 
-    !procedure $optionalJsonInternal($json)
+    !procedure $optionalJson($json)
         !if ($json.rule==1)
             $mandatoryJson($json) 
         !endif
     !endprocedure
 
-     !procedure $alternativeJsonInternal($json)
+     !procedure $alternativeJson($json)
         !if ($json.rule==0) 
              $mandatoryJson($json)
         !elseif ($json.rule==1)
@@ -66,20 +66,20 @@
         !endif 
     !endprocedure
 
-    !unquoted procedure $mandatoryInput($midlelement)
+    !unquoted procedure $mandatoryInput($namecomponent,$midlelement)
         "$midlelement"
     !endprocedure
 
-    !unquoted procedure $optionalInput($midlelement, $aparecer)
-        !if ($aparecer==1)
+    !unquoted procedure $optionalInput($namecomponent,$midlelement,$rule)
+        !if ($rule==1)
             $mandatoryInput($midlelement) 
         !endif
     !endprocedure
 
-    !unquoted procedure $alternativeInput($midlelement, $plataforma, $midlealternative)
-        !if ($plataforma==0) 
+    !unquoted procedure $alternativeInput($namecomponent,$midlelement,$rule,$midlealternative,$namealternative)
+        !if ($rule==0) 
              $mandatoryInput($midlelement)
-        !elseif ($plataforma==1)
+        !elseif ($rule==1)
             $mandatoryInput($midlealternative)   
         !endif 
     !endprocedure

@@ -21,6 +21,7 @@ umlline
   / emptyline {return null }
   / include {return null }
   / log {return null}
+  / plantvariable {return null}
 
 startblock
   = noise [{] noise
@@ -65,11 +66,11 @@ EscapeSequence
   / "t"  { return "\t";   }
   / "v"  { return "\x0B"; }  
   
-MandatoryFunction =  "$mandatory(" + namecomponent:doublequote + virgula + multiline:[a-zA-Z0-9-$] + virgula + lefbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote ")" newline {
+MandatoryFunction =  "$mandatory(" + namecomponent:doublequote + virgula + multiline:numberOrVariable + virgula + lefbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote ")" newline {
 	return `<MandatoryFeature component=${namecomponent}/>`;
 } 
 
-AlternativeFunction = "$alternative(" + namecomponent:doublequote + virgula + multiline:[a-zA-Z0-9-$] + virgula + leftbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote + virgula + rule:[a-zA-Z0-9-$] + virgula +  namealternative:doublequote + virgula + leftalternative:doublequote + virgula + midlealternative:doublequote + virgula + rightalternative:doublequote + virgula + multialternative:[a-zA-Z0-9-$] + ")" newline{
+AlternativeFunction = "$alternative(" + namecomponent:doublequote + virgula + multiline:numberOrVariable + virgula + leftbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote + virgula + rule:numberOrVariable + virgula +  namealternative:doublequote + virgula + leftalternative:doublequote + virgula + midlealternative:doublequote + virgula + rightalternative:doublequote + virgula + multialternative:numberOrVariable + ")" newline{
 	return `<AlternativeFeature components={[{component:${namecomponent}, rule: },{component:${namealternative}, rule: }]} rule={${rule}}/>`;
 }
 
@@ -101,6 +102,9 @@ AlternativeJsonFunction = "AlternativeJson Function" newline {
 	return "alternative json";
 }
 
+numberOrVariable
+ = char:[a-zA-Z0-9-$] {return char;}
+
 LineOfText = text:$(char+) EOL
    { return text }
 
@@ -116,3 +120,6 @@ include
  
 log
  = "!log" LineOfText
+ 
+plantvariable
+ = "!$" LineOfText
