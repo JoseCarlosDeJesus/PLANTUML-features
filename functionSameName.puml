@@ -1,0 +1,24 @@
+@startsalt perfilInclude
+{
+
+    !unquoted procedure $mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket)
+    !if ($multiline==1)
+         $leftbracket %newline() $midlelement $rightbracket
+    !else
+        $leftbracket $midlelement $rightbracket
+    !endif    
+    !endprocedure
+
+    !unquoted procedure $mandatory($multiline, $leftbracket, $midlelement, $rightbracket)
+    !if ($multiline==1)
+         $leftbracket %newline() $midlelement $rightbracket
+    !else
+        $leftbracket $midlelement $rightbracket
+    !endif    
+    !endprocedure
+
+    $mandatory("PerfilUsuario",0,"","Nome:Fulano de Tal %newline() Endereço: Gotham City","")
+    $mandatory(0,"","Nome:Fulano de Tal %newline() Endereço: Gotham City","")
+
+}
+@endsalt
