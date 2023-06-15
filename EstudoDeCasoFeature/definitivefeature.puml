@@ -1,6 +1,8 @@
 @startsalt featuredefinitive
 {
-    !unquoted procedure $mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket)
+    'the functions that can be in the pegjs must have doublequotes
+
+    !procedure $mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket)
     !if ($multiline==1)
          $leftbracket %newline() $midlelement $rightbracket
     !else
@@ -8,19 +10,21 @@
     !endif    
     !endprocedure
 
-    !unquoted procedure $optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule)
+    !procedure $optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule)
         !if ($rule==1)
             $mandatory($multiline, $leftbracket, $midlelement, $rightbracket) 
         !endif
     !endprocedure
 
-    !unquoted procedure $alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative)
+    !procedure $alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative)
         !if ($rule==0) 
              $mandatory($multiline, $leftbracket, $midlelement, $rightbracket)
         !elseif ($rule==1)
             $mandatory($multialternative, $leftalternative, $midlealternative, $rightalternative)   
         !endif 
     !endprocedure
+
+    'this is the json functions made only for use in salt, not in the pegjs
 
     !procedure $mandatoryJson($json)
     !if ($json.multiline==1)
@@ -45,7 +49,7 @@
     !endprocedure
 
     'this part is without the namecomponent parameter, use for salt only without
-    'worrying with the precompiler part
+    'worrying with the precompiler(pegjs) part
 
     !unquoted procedure $mandatory($multiline, $leftbracket, $midlelement, $rightbracket)
     !if ($multiline==1)
@@ -55,13 +59,13 @@
     !endif    
     !endprocedure
 
-     !unquoted procedure $optiona($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)
+     !unquoted procedure $optional($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)
         !if ($aparecer==1)
             $mandatory($multi, $leftbracket, $midlelement, $rightbracket) 
         !endif
     !endprocedure
 
-    !unquoted procedure $alternativeInternal($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative, $multialternative)
+    !unquoted procedure $alternative($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative, $multialternative)
         !if ($plataforma==0) 
              $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
         !elseif ($plataforma==1)
