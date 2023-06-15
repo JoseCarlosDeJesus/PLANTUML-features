@@ -8,7 +8,7 @@
     !$produto2 = { "titulo": "Notebook Samsung Book" ,"disponivel": 20, "valor": "R$2549", "imagem": "http://plantuml.com/logo3.png"}
 
     $optional("barrapesquisa",0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer) |
-    $alternative("menunavbar",1,{*,Produtos | <b>Meu Carrinho | Meu Perfil,},$desktop,{*,"<&menu> | <&cart> %newline() <&menu> | Produtos | Meu Carrinho | - | Meu Perfil",},0)
+    $alternative("menuDesktop",1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil","}",$desktop,"menuNavbar","{*","<&menu> | <&cart>","}",0)
 
     $mandatory("delimitador",0,"",..,"")
     $mandatory("outrodelimitador",0,"",==,"")
