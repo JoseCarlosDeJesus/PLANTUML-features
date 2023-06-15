@@ -8,11 +8,11 @@
 
     $optional("barraPesquisa",0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer)
 
-    $alternative("menu",1,{*,Produtos | <b>Meu Carrinho | Meu Perfil,},$desktop,"menuNavbar",{*,<&menu> | <&cart>,},0)
+    $alternative("menu",1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil,}",$desktop,"menuNavbar","{*","<&menu> | <&cart>","}",0)
 
-    $mandatory("tabelaCarrinho",1, {T-,"Descrição | Quantidade | Valor | Total %newline() Notebook  |  1 | 69 |30 %newline() Maçã | 1 | 89 | 90",})
+    $mandatory("tabelaCarrinho",1, "{T-","Descrição | Quantidade | Valor | Total %newline() Notebook  |  1 | 69 |30 %newline() Maçã | 1 | 89 | 90","}")
     $mandatory("TotalDeCompras",0,"","Total | R$ 898990","")
-    $mandatory("BotaoConfirmar",0,[,"Confirmar Compra",])
+    $mandatory("BotaoConfirmar",0,"[","Confirmar Compra","]")
 
 }
 @endsalt

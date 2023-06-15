@@ -2,7 +2,7 @@
 {
     'the functions that can be in the pegjs must have doublequotes
 
-    !procedure $mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket)
+    !unquoted procedure $mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket)
     !if ($multiline==1)
          $leftbracket %newline() $midlelement $rightbracket
     !else
@@ -10,13 +10,13 @@
     !endif    
     !endprocedure
 
-    !procedure $optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule)
+    !unquoted procedure $optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule)
         !if ($rule==1)
             $mandatory($multiline, $leftbracket, $midlelement, $rightbracket) 
         !endif
     !endprocedure
 
-    !procedure $alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative)
+    !unquoted procedure $alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative)
         !if ($rule==0) 
              $mandatory($multiline, $leftbracket, $midlelement, $rightbracket)
         !elseif ($rule==1)
