@@ -1,6 +1,11 @@
 start = plantumlfile
 
 plantumlfile = "@startsalt" noise newline "{" newline filelines:umllines noise "@endsalt" noise {
+ function myFunction(item, index) {
+  text += index + ": " + item + "<br>"; 
+}
+
+
  return `exports default class nameComponent extends React Component{
  constructor(props){
  	super();
@@ -9,9 +14,10 @@ plantumlfile = "@startsalt" noise newline "{" newline filelines:umllines noise "
  render(){
  	return(
  	<div>
- 	${filelines}
+ 	${filelines.join("\n\t\t")}
  	</div>
  }
+ 
  }` ;
 }
 
