@@ -78,28 +78,28 @@ EscapeSequence
   / "t"  { return "\t";   }
   / "v"  { return "\x0B"; }  
   
-MandatoryFunction = noise "$mandatory(" + namecomponent:doublequote + virgula + multiline:numberOrVariable + virgula + lefbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote ")" newline {
+MandatoryFunction = noise "$mandatory(" namecomponent:doublequote virgula multiline:numberOrVariable1 lefbracket:doublequote virgula midlelement:doublequote virgula rightbracket:doublequote ")" newline {
 	return `<MandatoryFeature component=${namecomponent}/>`;
 } 
 
-AlternativeFunction = noise "$alternative(" + namecomponent:doublequote + virgula + multiline:numberOrVariable + virgula + leftbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote + virgula + rule:numberOrVariable1 +  namealternative:doublequote + virgula + leftalternative:doublequote + virgula + midlealternative:doublequote + virgula + rightalternative:doublequote + virgula + multialternative:numberOrVariable + ")" newline{
+AlternativeFunction = noise "$alternative(" namecomponent:doublequote virgula multiline:numberOrVariable1 leftbracket:doublequote virgula midlelement:doublequote virgula rightbracket:doublequote virgula rule:numberOrVariable1 namealternative:doublequote virgula leftalternative:doublequote virgula midlealternative:doublequote virgula rightalternative:doublequote virgula multialternative:numberOrVariable ")" newline{
 	return `<AlternativeFeature components={[{component:${namecomponent}, rule: },{component:${namealternative}, rule: }]} rule={${rule}}/>`;
 }
 
-OptionalFunction = noise "$optional(" + namecomponent:doublequote + virgula + multiline:[a-zA-Z0-9-$] + virgula + leftbracket:doublequote + virgula + midlelement:doublequote + virgula + rightbracket:doublequote + virgula + rule:numberOrVariable2 newline{
+OptionalFunction = noise "$optional(" namecomponent:doublequote virgula multiline:numberOrVariable1 leftbracket:doublequote virgula midlelement:doublequote virgula rightbracket:doublequote virgula rule:numberOrVariable2 newline{
 	return `<OptionalFeature component=${namecomponent} rules={${rule}}/>`;
 }
 
-MandatoryInputFunction = noise "oi meu amigo" newline {
-	return " oi meu amigo";
+MandatoryInputFunction = noise "$mandatoryInput(" namecomponent:doublequote virgula doublequote ")" newline {
+	return `<MandatoryFeature component=${namecomponent}/>`;
 }
 
 AlternativeInputFunction = noise "alternative input" newline {
 	return " alternative input" ;
 }
 
-OptionalInputFunction = noise "optional input" newline {
-	return "optional input";
+OptionalInputFunction = noise "$optionalInput(" namecomponent:parameter midlelement:parameter rule:numberOrVariable2 newline {
+	return `<OptionalFeature component=${namecomponent} rules={${rule}}/>`;
 }
 
 MandatoryJsonFunction = noise "mandatoryJson Function" newline {
@@ -147,3 +147,7 @@ openSaltBracket
 namedDiagram
  = name:LineOfText
  / noise newline {return name;}
+ 
+parameter
+ = numberOrVariable1
+ / doublequote ","
