@@ -1,7 +1,18 @@
 start = plantumlfile
 
 plantumlfile = "@startsalt" noise newline "{" newline filelines:umllines noise "@endsalt" noise {
- return filelines ;
+ return `exports default class nameComponent extends React Component{
+ constructor(props){
+ 	super();
+ }
+ 
+ render(){
+ 	return(
+ 	<div>
+ 	${filelines}
+ 	</div>
+ }
+ }` ;
 }
 
 umllines
