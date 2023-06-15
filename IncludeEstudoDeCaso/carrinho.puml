@@ -4,11 +4,11 @@
     !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
 
     !$aparecer = 1
-    !$desktop = 1
+    !$desktop = 0
 
     $optional("barraPesquisa",0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer)
 
-    $alternative("menu",1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil,}",$desktop,"menuNavbar","{*","<&menu> | <&cart>","}",0)
+    $alternative("menuDesktop",1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil","}",$desktop,"menuNavbar","{*","<&menu> | <&cart>","}",0)
 
     $mandatory("tabelaCarrinho",1, "{T-","Descrição | Quantidade | Valor | Total %newline() Notebook  |  1 | 69 |30 %newline() Maçã | 1 | 89 | 90","}")
     $mandatory("TotalDeCompras",0,"","Total | R$ 898990","")

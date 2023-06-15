@@ -74,6 +74,7 @@
     !endprocedure
 
     'this part is to facilitate the use of the input widget in salt using the functions predefinided
+    'these can be used in pegjs
 
     !unquoted procedure $mandatoryInput($namecomponent,$midlelement)
         "$midlelement"
@@ -92,5 +93,27 @@
             $mandatoryInput($midlealternative)   
         !endif 
     !endprocedure
+
+    'this part is to the input widget in salt , for salt use only
+
+    !unquoted procedure $mandatoryInput($midlelement)
+        "$midlelement"
+    !endprocedure
+
+    !unquoted procedure $optionalInput($midlelement, $aparecer)
+        !if ($aparecer==1)
+            $mandatoryInput($midlelement) 
+        !endif
+    !endprocedure
+
+    !unquoted procedure $alternativeInput($midlelement, $plataforma, $midlealternative)
+        !if ($plataforma==0) 
+             $mandatoryInput($midlelement)
+        !elseif ($plataforma==1)
+            $mandatoryInput($midlealternative)   
+        !endif 
+    !endprocedure
+
+
 }
 @endsalt
