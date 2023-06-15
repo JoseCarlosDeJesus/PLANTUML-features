@@ -1,6 +1,6 @@
 start = plantumlfile
 
-plantumlfile = "@startsalt" noise newline openSaltBracket newline filelines:umllines noise "@endsalt" noise {
+plantumlfile = "@startsalt" noise newline openSaltBracket newline filelines:umllines "}" newline noise "@endsalt" noise {
  return `exports default class nameComponent extends React Component{
  constructor(props){
  	super();
