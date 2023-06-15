@@ -1,6 +1,6 @@
 start = plantumlfile
 
-plantumlfile = "@startsalt" noise newline "{" newline filelines:umllines noise "@endsalt" noise {
+plantumlfile = "@startsalt" noise newline openSaltBracket newline filelines:umllines noise "@endsalt" noise {
  return `exports default class nameComponent extends React Component{
  constructor(props){
  	super();
@@ -123,7 +123,7 @@ numberOrVariable
 
 LineOfText = text:$(char+) EOL
    { return text }
-
+  
 // this part is to the include part.
 char = [^\n\r]
 newline1 = '\n' / '\r' '\n'?
@@ -139,3 +139,7 @@ log
  
 plantvariable
  = noise "!$" LineOfText
+ 
+openSaltBracket
+ = noise "{" char
+  / noise "{"
