@@ -34,6 +34,7 @@ umlline
   / include {return null }
   / log {return null}
   / plantvariable {return null}
+  / declaratedFunction {return null}
 
 noise
   = [ \t]*  
@@ -135,6 +136,13 @@ include
  = noise "!include" LineOfText
  / noise "!include_many" LineOfText
  / noise "!include_once" LineOfText
+ 
+declaratedFunction
+ = noise "!procedure" chars:functionScope* noise "!endprocedure" noise
+  / noise "!function" chars:functionScope* noise "!endfunction" noise
+  
+functionScope
+ = noise !("!endprocedure" / "!endfunction") char:. { return char; }
  
 log
  = noise "!log" LineOfText
