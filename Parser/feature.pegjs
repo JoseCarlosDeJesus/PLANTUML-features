@@ -100,12 +100,12 @@ MandatoryJsonFunction = noise "$mandatoryJson(" namecomponent:parameter newline 
 	return `<MandatoryFeature component=${namecomponent}/>`;
 }
 
-OptionalJsonFunction = noise "$optionalJson(" namecomponent:parameter  newline {
+OptionalJsonFunction = noise "$optionalJson(" namecomponent:parameter rule:numberOrVariable2  newline {
 	return `<OptionalFeature component=${namecomponent} rules={${rule}}/>`;
 }
 
-AlternativeJsonFunction = noise "$alternativeJson(" newline {
-	return "alternative json";
+AlternativeJsonFunction = noise "$alternativeJson(" namecomponent:parameter namealternative:parameter rule:numberOrVariable2 newline {
+	return `<AlternativeFeature components={[{component:${namecomponent}, rule: },{component:${namealternative}, rule: }]} rule={${rule}}/>`;
 }
 
 numberOrVariable2 = chars:numberOrVariable* ")" {
