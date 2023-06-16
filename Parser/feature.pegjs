@@ -73,15 +73,15 @@ EscapeSequence
   / "t"  { return "\t";   }
   / "v"  { return "\x0B"; }  
   
-MandatoryFunction = noise "$mandatory(" namecomponent:doublequote virgula multiline:numberOrVariable1 lefbracket:doublequote virgula midlelement:doublequote virgula rightbracket:doublequote ")" newline {
+MandatoryFunction = noise "$mandatory(" namecomponent:parameter multiline:numberOrVariable1 lefbracket:parameter midlelement:parameter rightbracket:parameter newline {
 	return `<MandatoryFeature component=${namecomponent}/>`;
 } 
 
-AlternativeFunction = noise "$alternative(" namecomponent:doublequote virgula multiline:numberOrVariable1 leftbracket:doublequote virgula midlelement:doublequote virgula rightbracket:doublequote virgula rule:numberOrVariable1 namealternative:doublequote virgula leftalternative:doublequote virgula midlealternative:doublequote virgula rightalternative:doublequote virgula multialternative:numberOrVariable ")" newline{
+AlternativeFunction = noise "$alternative(" namecomponent:parameter multiline:numberOrVariable1 leftbracket:parameter midlelement:parameter rightbracket:parameter rule:numberOrVariable1 namealternative:parameter leftalternative:parameter midlealternative:parameter rightalternative:parameter multialternative:numberOrVariable2 newline{
 	return `<AlternativeFeature components={[{component:${namecomponent}, rule: },{component:${namealternative}, rule: }]} rule={${rule}}/>`;
 }
 
-OptionalFunction = noise "$optional(" namecomponent:doublequote virgula multiline:numberOrVariable1 leftbracket:doublequote virgula midlelement:doublequote virgula rightbracket:doublequote virgula rule:numberOrVariable2 newline{
+OptionalFunction = noise "$optional(" namecomponent:parameter multiline:numberOrVariable1 leftbracket:parameter midlelement:parameter rightbracket:parameter rule:numberOrVariable2 newline{
 	return `<OptionalFeature component=${namecomponent} rules={${rule}}/>`;
 }
 
