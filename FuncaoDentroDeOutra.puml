@@ -1,0 +1,16 @@
+@startsalt funcaoComFuncao
+{
+    !unquoted procedure funcaocomfunc($funcao)
+        $funcao
+    !endprocedure
+
+    !unquoted procedure funcaoChamada($texto)
+        [$texto]
+    !endprocedure
+
+    'nao dá para chamar uma funcao em outra.
+    $funcaocomfunc($funcaoChamada(oi))
+    $funcaoChamada(oi)
+
+}
+@endsalt

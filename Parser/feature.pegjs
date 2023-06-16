@@ -96,21 +96,29 @@ OptionalInputFunction = noise "$optionalInput(" namecomponent:parameter midlelem
 	return `<OptionalFeature component=${namecomponent} rules={${rule}}/>`;
 }
 
-MandatoryJsonFunction = noise "mandatoryJson Function" newline {
-	return "mandatory json";
+MandatoryJsonFunction = noise "$mandatoryJson(" namecomponent:parameter newline {
+	return `<MandatoryFeature component=${namecomponent}/>`;
 }
 
-OptionalJsonFunction = noise "OptionalJson Function" newline {
-	return "optional json";
+OptionalJsonFunction = noise "$optionalJson(" namecomponent:parameter  newline {
+	return `<OptionalFeature component=${namecomponent} rules={${rule}}/>`;
 }
 
-AlternativeJsonFunction = noise "AlternativeJson Function" newline {
+AlternativeJsonFunction = noise "$alternativeJson(" newline {
 	return "alternative json";
 }
 
-numberOrVariable2 = chars:numberOrVariable* ")" { return chars.join(""); }
+numberOrVariable2 = chars:numberOrVariable* ")" {
+ if(chars[0] === '$'){
+   chars[0] = "";
+ }
+return chars.join(""); }
 
-numberOrVariable1 = chars:numberOrVariable* "," { return chars.join(""); }
+numberOrVariable1 = chars:numberOrVariable* "," {
+ if(chars[0] === '$'){
+   chars[0] = "";
+ }
+return chars.join(""); }
 
 numberOrVariable
  = char:[a-zA-Z0-9-$] {return char;}
