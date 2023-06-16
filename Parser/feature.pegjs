@@ -35,14 +35,8 @@ umlline
   / log {return null}
   / plantvariable {return null}
 
-startblock
-  = noise [{] noise
-endblock
-  = noise [}]
 noise
   = [ \t]*  
-splitter
-  = [:]
 newline
   = [\r\n]
   / [\n]
@@ -90,12 +84,12 @@ OptionalFunction = noise "$optional(" namecomponent:doublequote virgula multilin
 	return `<OptionalFeature component=${namecomponent} rules={${rule}}/>`;
 }
 
-MandatoryInputFunction = noise "$mandatoryInput(" namecomponent:doublequote virgula doublequote ")" newline {
+MandatoryInputFunction = noise "$mandatoryInput(" namecomponent:parameter parameter newline {
 	return `<MandatoryFeature component=${namecomponent}/>`;
 }
 
-AlternativeInputFunction = noise "alternative input" newline {
-	return " alternative input" ;
+AlternativeInputFunction = noise "$alternativeInput(" namecomponent:parameter midlelement:parameter rule: numberOrVariable1 midlealternative:parameter namealternative:parameter newline {
+	return `<AlternativeFeature components={[{component:${namecomponent}, rule: },{component:${namealternative}, rule: }]} rule={${rule}}/>` ;
 }
 
 OptionalInputFunction = noise "$optionalInput(" namecomponent:parameter midlelement:parameter rule:numberOrVariable2 newline {
@@ -149,5 +143,8 @@ namedDiagram
  / noise newline {return name;}
  
 parameter
- = numberOrVariable1
- / doublequote ","
+ = banana:doublequote virgula {return banana}
+ / names:doublequote ")"
+ / "$" apple:numberOrVariable2 {return apple;}
+ / "$" names:numberOrVariable1 // ","
+ {return names;} 
