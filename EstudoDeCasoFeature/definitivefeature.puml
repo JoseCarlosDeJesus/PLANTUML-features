@@ -86,7 +86,7 @@
      'Json multiline will require this functions, because the %newline() and %chr(34)
      'command dont work in the json 
 
-     !procedure $mandatoryJson1($json,$midlelement)
+     !procedure $mandatoryJson($json,$midlelement)
     !if ($json.multiline==1)
          $json.leftbracket %newline() $midlelement $json.rightbracket
     !else
@@ -94,13 +94,13 @@
     !endif    
     !endprocedure
 
-    !procedure $optionalJson1($json,$midlelement,$rule)
+    !procedure $optionalJson($json,$midlelement,$rule)
         !if ($json.rule==1)
             $mandatoryJson($json,$midlelement) 
         !endif
     !endprocedure
 
-    !procedure $alternativeJson1($json,$midlelement,$midlealternative,$namealternative,$rule)
+    !procedure $alternativeJson($json,$midlelement,$midlealternative,$namealternative,$rule)
         !if ($json.rule==0) 
              $mandatoryJson($json,$midlelement)
         !elseif ($json.rule==1)
