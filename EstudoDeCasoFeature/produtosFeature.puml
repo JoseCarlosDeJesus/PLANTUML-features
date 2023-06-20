@@ -1,27 +1,6 @@
 @startsalt produtosfeature
 {S
-    !unquoted procedure $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
-    !if ($multi==1)
-         $leftbracket %newline() $midlelement $rightbracket
-    !else
-        $leftbracket $midlelement $rightbracket
-    !endif    
-
-    !endprocedure
-
-    !unquoted procedure $optional($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)
-        !if ($aparecer==1)
-            $mandatory($multi, $leftbracket, $midlelement, $rightbracket) 
-        !endif
-    !endprocedure
-
-    !unquoted procedure $alternative($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative,$multialternative)
-        !if ($plataforma==0) 
-             $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
-        !elseif ($plataforma==1)
-            $mandatory($multialternative, $leftalternative, $midlealternative, $rightalternative)   
-        !endif 
-    !endprocedure
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
 
 
     !$desktop = 1
@@ -30,7 +9,7 @@
     !$produto2 = { "titulo": "Notebook Samsung Book" ,"disponivel": 20, "valor": "R$2549", "imagem": "http://plantuml.com/logo3.png"}
 
     $optional(0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer) |
-    $alternative(1,{*,Produtos | <b>Meu Carrinho | Meu Perfil,},$desktop,{*,"<&menu> | <&cart> %newline() <&menu> | Produtos | Meu Carrinho | - | Meu Perfil",},0)
+    $alternative(1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil","}",$desktop,"{*","<&menu> | <&cart> %newline() <&menu> | Produtos | Meu Carrinho | - | Meu Perfil","}",0)
 
     $mandatory(0,"",..,"")
     $mandatory(0,"",==,"")

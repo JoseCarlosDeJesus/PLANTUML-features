@@ -1,39 +1,12 @@
 @startsalt jsonexample
 {   
-    !unquoted procedure $mandatory($multiline, $leftbracket, $midlelement, $rightbracket)
-    !if ($multiline==1)
-         $leftbracket %newline() $midlelement $rightbracket
-    !else
-        $leftbracket $midlelement $rightbracket
-    !endif    
-    !endprocedure
+    'json functions just work with basic widgets! Be warned!
 
-
-    !procedure $mandatoryJson($json)
-    !if ($json.multiline==1)
-         $json.leftbracket %newline() $json.midlelement $json.rightbracket
-    !else
-        $json.leftbracket $json.midlelement $json.rightbracket
-    !endif    
-    !endprocedure
-
-    !procedure $optionalJson($json)
-        !if ($json.rule==1)
-            $mandatoryJson($json) 
-        !endif
-    !endprocedure
-
-     !procedure $alternativeJson($json)
-        !if ($json.rule==0) 
-             $mandatoryJson($json)
-        !elseif ($json.rule==1)
-            $mandatory($json.multialternative, $json.leftalternative, $json.midlealternative, $json.rightalternative)   
-        !endif 
-    !endprocedure
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
 
     !$variavelexemplo = { "multiline": 0, "leftbracket": "[", "midlelement": "json mandatorio", "rightbracket": "]"}
     !$variavelexemplo1 = { "multiline": 0, "leftbracket": "[", "midlelement": "json opcional", "rightbracket": "]", "rule": 1}
-    !$variavelalternativa = { "multiline": 0, "leftbracket": "[", "midlelement": "ui luigi", "rightbracket": "]", "rule": 1 , "multialternative": 0, "leftalternative": "{*", "midlealternative": "<&menu> | <&cart>", "rightalternative": "}"}
+    !$variavelalternativa = { "multiline": 0, "leftbracket": "[", "midlelement": "ui luigi", "rightbracket": "]", "rule": 0 , "multialternative": 0, "leftalternative": "{*", "midlealternative": "<&menu> | <&cart>", "rightalternative": "}"}
 
     $mandatoryJson($variavelexemplo)
     $optionalJson($variavelexemplo1)

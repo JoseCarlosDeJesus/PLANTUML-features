@@ -1,28 +1,7 @@
 @startsalt carrinho personalizado
 {S
-    !unquoted procedure $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
-    !if ($multi==1)
-         $leftbracket %newline() $midlelement $rightbracket
-    !else
-        $leftbracket $midlelement $rightbracket
-    !endif    
-
-    !endprocedure
-
-    !unquoted procedure $optional($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)
-        !if ($aparecer==1)
-            $mandatory($multi, $leftbracket, $midlelement, $rightbracket) 
-        !endif
-    !endprocedure
-
-    !unquoted procedure $alternative($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative, $multialternative)
-        !if ($plataforma==0) 
-             $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
-        !elseif ($plataforma==1)
-            $mandatory($multialternative, $leftalternative, $midlealternative, $rightalternative)   
-        !endif 
-    !endprocedure
-
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+    
     !$aparecer = 1
     !$desktop = 1
 

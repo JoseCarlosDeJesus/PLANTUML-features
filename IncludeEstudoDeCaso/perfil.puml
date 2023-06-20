@@ -8,7 +8,7 @@
 
     $optional("BarraPesquisa",0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer)
 
-    $alternative("menuDesktop",1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil","}",$desktop,"menuNavbar","{*","<&menu> | <&cart>","}",0)
+    $alternative("menuDesktop",1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil","}",$desktop,"menuNavbar","{*","<&menu> | <&cart> %newline() <&menu> | Produtos | Meu Carrinho | - | Meu Perfil","}",0)
 
     $mandatory("PerfilUsuario",0,"","Nome:Fulano de Tal %newline() Endereço: Gotham City","")
 }
