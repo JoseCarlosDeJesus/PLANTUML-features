@@ -65,6 +65,21 @@
         !endif 
     !endprocedure
 
+     !unquoted procedure $alternativeJsonInput($json,$namealternative,$rule)
+        !if ($json.rule==0) 
+             $mandatoryInput($json.midlelement)
+        !elseif ($json.rule==1)
+            $mandatoryInput($json.midlealternative)   
+        !endif 
+    !endprocedure
+
+    !unquoted procedure $optionalJsonInput($json,$rule)
+        !if ($json.rule==1)
+            $mandatoryInput($json.midlelement) 
+        !endif
+    !endprocedure
+
+
     'this part is without the namecomponent parameter, use for salt only without
     'worrying with the precompiler(pegjs) part
 
