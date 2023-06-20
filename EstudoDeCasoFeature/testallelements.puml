@@ -1,53 +1,8 @@
 @startsalt testandotodoselementos
 {
-     !unquoted procedure $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
-    !if ($multi==1)
-         $leftbracket %newline() $midlelement $rightbracket
-    !else
-        $leftbracket $midlelement $rightbracket
-    !endif    
-
-    !endprocedure
-
-    !unquoted procedure $optional($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)
-        !if ($aparecer==1)
-            $mandatory($multi, $leftbracket, $midlelement, $rightbracket) 
-        !endif
-    !endprocedure
-
-    !unquoted procedure $alternative($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative,$multialternative)
-        !if ($plataforma==0) 
-             $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
-        !elseif ($plataforma==1)
-            $mandatory($multialternative, $leftalternative, $midlealternative, $rightalternative)   
-        !endif 
-    !endprocedure
-
-    !unquoted procedure $mandatoryInput($midlelement)
-        "$midlelement"
-    !endprocedure
-
-    !unquoted procedure $optionalInput($midlelement, $aparecer)
-        !if ($aparecer==1)
-            $mandatoryInput($midlelement) 
-        !endif
-    !endprocedure
-
-    !unquoted procedure $alternativeInput($midlelement, $plataforma, $midlealternative)
-        !if ($plataforma==0) 
-             $mandatoryInput($midlelement)
-        !elseif ($plataforma==1)
-            $mandatoryInput($midlealternative)   
-        !endif 
-    !endprocedure
-
-    !procedure $oi($midlelement)
-    {^
-        $midlelement
-    }
-    !endprocedure
-
-   !log elementos basicos representados utilizando minha funcao
+   !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+      
+   'Basic widgets
     $mandatory(0,"", Just plain Text,"")
     $mandatory(0,[, This is my button,])
     $mandatory(0,(),Unchecked radio,"")
@@ -57,14 +12,96 @@
     $mandatoryInput(Enter text here)
     $mandatory(0,^,This is a droplist,^)
 
-    !log testando como colocar elementos na mesma linha
-    $mandatory(0,"","Login: | [my name]", "")
-    $mandatory(0,"Login: |", "[my name]", "")
+    'Using grid [|]
+    {+
+    $mandatory(0,"","Login: | %chr(34) my name %chr(34)", "")
+    $mandatory(0,"Password: |", "%chr(34) ***oi** %chr(34)", "")
     $mandatory(0,"[cancel] |","[Ok]", "")
+    }
+
+    'Group box [^]
+    {^"My groupBox"
+    $mandatory(0,"","Login: | %chr(34) my name %chr(34)", "")
+    $mandatory(0,"Password: |", "%chr(34) ***oi** %chr(34)", "")
+    $mandatory(0,"[cancel] |","[Ok]", "")
+    }
     
-    !log %chr(34) e a aspas em ascii
+    'Using separator [.., ==, ~~, –]
+    $mandatory(0,"","..","")
+    $mandatory(0,"","==","")
+    $mandatory(0,"","~~","")
+    $mandatory(0,"","--","")
+
+    !log %chr(34) is the double quote in ascii
     $mandatory(0,[,"This is an %chr(34) escape %chr(34) of a double-quote",])
 
     $mandatory(0,"","Login : | %chr(34) my name %chr(34)","")
+
+    'Tree widget [T]
+    $mandatory(1,"{T","+ World %newline()++ America %newline() +++ Canada %newline() +++ USA %newline() ++++ New York %newline() ++++ Boston %newline() +++ Mexico %newline() ++ Europe %newline() +++ Italy %newline() +++ Germany %newline() ++++ Berlin %newline() ++ Africa","}")
+
+    'Tree table [T]
+    $mandatory(1,"{T","+Region | Population | Age %newline() + World | 7.13 billion | 30 %newline() ++ America | 964 million | 30 %newline() +++ Canada | 35 million | 30 %newline() +++ USA | 319 million | 30 %newline() ++++ NYC | 8 million | 30 %newline() ++++ Boston | 617 thousand | 30 %newline() +++ Mexico | 117 million | 30 %newline() ++ Europe | 601 million | 30 %newline() +++ Italy | 61 million | 30 %newline() +++ Germany | 82 million | 30 %newline() ++++ Berlin | 3 million | 30","}")
+
+    $mandatory(0,"","==","With T!")
+    $mandatory(1,"{T!","+Region | Population | Age %newline() + World | 7.13 billion | 30 %newline() ++ America | 964 million | 30","}")
+
+    $mandatory(0,"","==","With T-")
+    $mandatory(1,"{T-","+Region | Population | Age %newline() + World | 7.13 billion | 30 %newline() ++ America | 964 million | 30","}")
+
+
+    $mandatory(0,"","==","With T+")
+    $mandatory(1,"{T+","+Region | Population | Age %newline() + World | 7.13 billion | 30 %newline() ++ America | 964 million | 30","}")
+
+
+    $mandatory(0,"","==","With T#")
+    $mandatory(1,"{T#","+Region | Population | Age %newline() + World | 7.13 billion | 30 %newline() ++ America | 964 million | 30","}")
+
+    'Adding tabs [/]
+    $mandatory(0,"{/","<b>General | Fullscreen | Behavior | Saving","}")
+
+    'Tabs Vertically
+    $mandatory(0,"{/","<b>General %newline() Fullscreen %newline() Behavior %newline() Saving","}")
+
+    'Using menu [*
+
+    $mandatory(0,"{*","File | Edit | Source | Refactor","}")
+
+    'open menu:
+    $mandatory(0,"{*","File | Edit | Source | Refactor %newline() Refactor | New | Open File | - | Close | Close All","}")
+
+    'more the one widget in function
+    $mandatory(0,"{","Open image in: | ^Smart Mode^","}")
+
+    'Advanced table
+    $mandatory(1,"{#",". | Column 2 | Column 3 %newline() Row header 1 | value 1 | value 2 %newline() Row header 2 | A long cell | *","}")
+
+    'Scroll Bars [S, SI, S-]
+    $mandatory(1,"{S","Message","}")
+    $mandatory(1,"{SI","Message","}")
+    $mandatory(1,"{S-","Message","}")
+
+    'Change Text Color Widget
+    $mandatory(0,"[","<color:green>This is my green button","]")
+
+    'Pseudo Sprite
+    <<folder
+............
+.XXXXX......
+.X...X......
+.XXXXXXXXXX.
+.X........X.
+.X........X.
+.X........X.
+.X........X.
+.XXXXXXXXXX.
+............
+>>
+
+    $mandatory(0,"","<<folder>>","")
+
+    'Open Iconic
+    $mandatory(0,"","Login<&person> | %chr(34)MyName %chr(34)","")
+
 }
 @endsalt

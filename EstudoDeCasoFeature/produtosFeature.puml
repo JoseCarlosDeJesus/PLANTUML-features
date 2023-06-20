@@ -24,7 +24,7 @@
     !endprocedure
 
 
-    !$desktop = 0
+    !$desktop = 1
     !$aparecer = 1
     !$produto1 = { "titulo": "Notebook Gamer Lenovo" ,"disponivel": 50, "valor": "R$4699", "imagem": "http://plantuml.com/logo3.png"}
     !$produto2 = { "titulo": "Notebook Samsung Book" ,"disponivel": 20, "valor": "R$2549", "imagem": "http://plantuml.com/logo3.png"}
