@@ -65,6 +65,10 @@
         !endif 
     !endprocedure
 
+    !unquoted procedure $mandatoryJsonInput($json)
+        "$json.midlelement"
+    !endprocedure
+
      !unquoted procedure $alternativeJsonInput($json,$namealternative,$rule)
         !if ($json.rule==0) 
              $mandatoryInput($json.midlelement)
