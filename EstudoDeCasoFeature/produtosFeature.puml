@@ -1,7 +1,7 @@
 @startsalt produtosfeature
 {S
+    'These don't use the function to convert in pegjs, just for plantUML use only
     !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
-
 
     !$desktop = 1
     !$aparecer = 1

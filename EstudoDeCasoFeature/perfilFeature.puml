@@ -1,5 +1,6 @@
 @startsalt perfilfeature
 {
+    'These don't use the function to convert in pegjs, just for plantUML use only
     !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
 
     !$aparecer = 1
