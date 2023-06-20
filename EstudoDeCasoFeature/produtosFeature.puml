@@ -14,9 +14,9 @@
     $mandatory(0,"",..,"")
     $mandatory(0,"",==,"")
 
-    {
+    
     $mandatory(1,{^,"<img:$produto1.imagem> %newline() $produto1.titulo %newline() $produto1.disponivel %newline() $produto1.valor %newline() [Comprar]",})
     $mandatory(1,{^,"<img:$produto2.imagem> %newline() $produto2.titulo %newline() $produto2.disponivel %newline() $produto2.valor %newline() [Comprar]",})
-    } 
+     
 }
 @endsalt
