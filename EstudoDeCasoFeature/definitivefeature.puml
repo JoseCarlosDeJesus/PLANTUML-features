@@ -79,7 +79,7 @@
 
     !unquoted procedure $optionalJsonInput($json,$rule)
         !if ($json.rule==1)
-            $mandatoryInput($json.midlelement) 
+            $mandatoryJsonInput($json) 
         !endif
     !endprocedure
 
