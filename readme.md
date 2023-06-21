@@ -101,17 +101,48 @@ Além disso, há outra função mandatory com suporte ao Parser do Pegjs que pos
 
 `$mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket)`
 
-Nesse método, há a inclusao do parâmetro $namecomponent do tipo String, que é responsável por dizer ao Parser qual será o nome do component do React chamado pelo componente MandatoryFeature da API ReactFeature.Não há mudança na forma que é renderizado os Widgets.
+Nesse método,assim como em outros com suporte para o Parser, há a inclusao do parâmetro $namecomponent assim como em todas as funções que tem suporte ao Parser. No Salt em si não há mudança na forma que é renderizado os Widgets.
+
+***$namecomponent:*** parâmetro do tipo String, que é responsável por dizer ao Parser qual será o nome do component do React chamado pelo componente MandatoryFeature da API ReactFeature.
 
 Por último, há o método mandatoryInput que também possui suporte para o Parser, com a assinatura de método:
 
 `$mandatoryInput($namecomponent,$midlelement)`
 
+Ou para uso exclusivo no Salt:
+
+$mandatoryInput($midlelement)
+
 que no caso utiliza apenas do parâmetro midlelement pois essa função é responsável apenas por renderizar o Widget de input do Salt, uma vez que sempre será contido entre aspas duplas.
 
 # Optional Function
 
+A assinatura do método optional é dada por `$optional($multi, $leftbracket, $midlelement, $rightbracket, $rule)` contendo os mesmos parâmetros que as funções mandatory, pois essa utiliza a função mandatory para renderizar o Widget. Porém, nesse método há um parâmetro de controle chamado $rule que informa se o Widget deve ser renderizado ou não no momento. Esse parâmetro funciona como um booleano, utilizando a mesma convenção de 0 para falso e 1 para verdadeiro.
+
+Para utilizar essa função em conjunto com o Parser utilize essa versão:
+
+`$optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule)`
+
+Outra forma para fazer o Widget de input no Salt com o método optional, da mesma forma que acontece com o método mandatory:
+
+`$optionalInput($midlelement, $rule)`
+
+Com suporte ao Parser:
+
+`$optionalInput($namecomponent,$midlelement,$rule)`
+
 # Alternative Function
+
+A assinatura desse método é dada por `$alternative($multi,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative, $multialternative)` sendo que esse método é responsável por renderizar um Widget caso o valor do parâmetro de controle $rule seja 0 ou outro caso seja 1. Ou seja, caso $rule=0 então o Widget escrito nos parâmetros $multi,$leftbracket,$midlelement,$rightbracket será renderizado (a regra para esses parâmetros é a mesma do método mandatory),já se $rule=1 então o Widget escrito nos parâmetros $multialternative,$leftalternative,$midlealternative,$rightalternative será renderizado.
+
+Na versão desse método com suporte ao Parser, `$alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative)` o parâmetro $namecomponent é o nome do componente a ser renderizado no ReactFeature pelo primeiro Widget, enquanto o parâmetro $namealternative representa o nome do componente do segundo Widget.
+
+Assim como os métodos anteriores, o método alternative possui uma versão para representar o Widget de Input do Salt:
+
+`$alternativeInput($midlelement, $rule, $midlealternative)`
+
+Com suporte ao Parser:
+`$alternativeInput($namecomponent,$midlelement,$rule,$midlealternative,$namealternative)`
 
 # How to use the functions to render Complex Widgets
 
@@ -135,8 +166,8 @@ Essa é uma lista das funções que possui suporte ao Parser disponível por ess
 
 As funções abaixo não possui suporte ao Parser:
 - `$mandatory($multiline, $leftbracket, $midlelement, $rightbracket)`
-- `$optional($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)`
-- `$alternative($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative, $multialternative)`
+- `$optional($multi, $leftbracket, $midlelement, $rightbracket, $rule)`
+- `$alternative($multi,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative, $multialternative)`
 - `$mandatoryInput($midlelement)`
 - `$optionalInput($midlelement, $rule)`
 - `$alternativeInput($midlelement, $rule, $midlealternative)`

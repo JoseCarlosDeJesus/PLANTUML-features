@@ -121,16 +121,16 @@
     !endif    
     !endprocedure
 
-     !unquoted procedure $optional($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)
-        !if ($aparecer==1)
+     !unquoted procedure $optional($multi, $leftbracket, $midlelement, $rightbracket, $rule)
+        !if ($rule==1)
             $mandatory($multi, $leftbracket, $midlelement, $rightbracket) 
         !endif
     !endprocedure
 
-    !unquoted procedure $alternative($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative, $multialternative)
-        !if ($plataforma==0) 
+    !unquoted procedure $alternative($multi,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative, $multialternative)
+        !if ($rule==0) 
              $mandatory($multi, $leftbracket, $midlelement, $rightbracket)
-        !elseif ($plataforma==1)
+        !elseif ($rule==1)
             $mandatory($multialternative, $leftalternative, $midlealternative, $rightalternative)   
         !endif 
     !endprocedure
