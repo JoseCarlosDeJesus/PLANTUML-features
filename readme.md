@@ -192,7 +192,7 @@ Exemplo:
 @endsalt
 ```
 
-Caso tenha dúvida de como escrever determinado Widget utilizando os métodos acima, acesse esse [arquivo](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/EstudoDeCasoFeature/testallelements.puml) onde foram testados todos os Widgets do Salt disponíveis no [guia do PlantUML](https://plantuml.com/guide) e descoberto algumas maneiras de utilizar as funções para acomodar diferentes cenários que podem ocorrer ao escrever seu arquivo Salt.
+Caso tenha dúvida de como escrever determinado Widget utilizando os métodos acima, acesse esse [arquivo](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Examples/testAllElements.puml) onde foram testados todos os Widgets do Salt disponíveis no [guia do PlantUML](https://plantuml.com/guide) e descoberto algumas maneiras de utilizar as funções para acomodar diferentes cenários que podem ocorrer ao escrever seu arquivo Salt.
 
 # Json Functions
 

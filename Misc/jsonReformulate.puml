@@ -1,0 +1,26 @@
+@startsalt jsonReformulate
+{
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+     !procedure $mandatoryJson12($json)
+        $mandatory($json.multiline, $json.leftbracket, $json.midlelement, $json.rightbracket)
+     !endprocedure
+
+    !procedure $optionalJson12($json)
+        $optional($json.multiline, $json.leftbracket, $json.midlelement, $json.rightbracket, $json.rule)       
+    !endprocedure
+
+    !procedure $alternativeJson12($json)
+        $alternative($json.multiline,$json.leftbracket, $json.midlelement, $json.rightbracket, $json.rule, $json.leftalternative,$json.midlealternative,$json.rightalternative, $json.multialternative)
+    !endprocedure
+
+    !$variavelexemplo = { "multiline": 1, "leftbracket": "{*", "midlelement": "File | Edit | Source | Refactor %newline() Refactor | New | Open File | - | Close | Close All", "rightbracket": "}"}
+    !$variavelexemplo1 = { "multiline": 0, "leftbracket": "[", "midlelement": "json opcional", "rightbracket": "]", "rule": 1}
+    !$variavelalternativa = { "multiline": 0, "leftbracket": "[", "midlelement": "ui luigi", "rightbracket": "]", "rule": 0 , "multialternative": 0, "leftalternative": "{*", "midlealternative": "<&menu> | <&cart>", "rightalternative": "}"}
+
+    $mandatoryJson12($variavelexemplo)
+    $optionalJson12($variavelexemplo1)
+    $alternativeJson12($variavelalternativa)
+
+}
+@endsalt

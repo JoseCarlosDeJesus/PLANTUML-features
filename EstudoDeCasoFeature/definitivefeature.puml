@@ -67,48 +67,48 @@
 
     'json input
 
-    !unquoted procedure $mandatoryJsonInput($json)
-        %chr(34) $json.midlelement %chr(34)
-    !endprocedure
+    ' !unquoted procedure $mandatoryJsonInput($json)
+    '     %chr(34) $json.midlelement %chr(34)
+    ' !endprocedure
 
-     !unquoted procedure $alternativeJsonInput($json,$namealternative,$rule)
-        !if ($json.rule==0) 
-             $mandatoryInput($json.midlelement)
-        !elseif ($json.rule==1)
-            $mandatoryInput($json.midlealternative)   
-        !endif 
-    !endprocedure
+    '  !unquoted procedure $alternativeJsonInput($json,$namealternative,$rule)
+    '     !if ($json.rule==0) 
+    '          $mandatoryInput($json.midlelement)
+    '     !elseif ($json.rule==1)
+    '         $mandatoryInput($json.midlealternative)   
+    '     !endif 
+    ' !endprocedure
 
-    !unquoted procedure $optionalJsonInput($json,$rule)
-        !if ($json.rule==1)
-            $mandatoryJsonInput($json) 
-        !endif
-    !endprocedure
+    ' !unquoted procedure $optionalJsonInput($json,$rule)
+    '     !if ($json.rule==1)
+    '         $mandatoryJsonInput($json) 
+    '     !endif
+    ' !endprocedure
 
      'Json multiline will require this functions, because the %newline() and %chr(34)
      'command dont work in the json 
 
-     !procedure $mandatoryJson($json,$midlelement)
-    !if ($json.multiline==1)
-         $json.leftbracket %newline() $midlelement $json.rightbracket
-    !else
-        $json.leftbracket $midlelement $json.rightbracket
-    !endif    
-    !endprocedure
+    '  !procedure $mandatoryJson($json,$midlelement)
+    ' !if ($json.multiline==1)
+    '      $json.leftbracket %newline() $midlelement $json.rightbracket
+    ' !else
+    '     $json.leftbracket $midlelement $json.rightbracket
+    ' !endif    
+    ' !endprocedure
 
-    !procedure $optionalJson($json,$midlelement,$rule)
-        !if ($json.rule==1)
-            $mandatoryJson($json,$midlelement) 
-        !endif
-    !endprocedure
+    ' !procedure $optionalJson($json,$midlelement,$rule)
+    '     !if ($json.rule==1)
+    '         $mandatoryJson($json,$midlelement) 
+    '     !endif
+    ' !endprocedure
 
-    !procedure $alternativeJson($json,$midlelement,$midlealternative,$namealternative,$rule)
-        !if ($json.rule==0) 
-             $mandatoryJson($json,$midlelement)
-        !elseif ($json.rule==1)
-            $mandatory($json.multialternative, $json.leftalternative, $midlealternative, $json.rightalternative)   
-        !endif 
-    !endprocedure
+    ' !procedure $alternativeJson($json,$midlelement,$midlealternative,$namealternative,$rule)
+    '     !if ($json.rule==0) 
+    '          $mandatoryJson($json,$midlelement)
+    '     !elseif ($json.rule==1)
+    '         $mandatory($json.multialternative, $json.leftalternative, $midlealternative, $json.rightalternative)   
+    '     !endif 
+    ' !endprocedure
    
     'this part is without the namecomponent parameter, use for salt only without
     'worrying with the precompiler(pegjs) part
