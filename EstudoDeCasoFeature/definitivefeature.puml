@@ -162,16 +162,16 @@
         "$midlelement"
     !endprocedure
 
-    !unquoted procedure $optionalInput($midlelement, $aparecer)
-        !if ($aparecer==1)
+    !unquoted procedure $optionalInput($midlelement, $rule)
+        !if ($rule==1)
             $mandatoryInput($midlelement) 
         !endif
     !endprocedure
 
-    !unquoted procedure $alternativeInput($midlelement, $plataforma, $midlealternative)
-        !if ($plataforma==0) 
+    !unquoted procedure $alternativeInput($midlelement, $rule, $midlealternative)
+        !if ($rule==0) 
              $mandatoryInput($midlelement)
-        !elseif ($plataforma==1)
+        !elseif ($rule==1)
             $mandatoryInput($midlealternative)   
         !endif 
     !endprocedure

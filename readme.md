@@ -109,7 +109,13 @@ Por último, há o método mandatoryInput que também possui suporte para o Pars
 
 que no caso utiliza apenas do parâmetro midlelement pois essa função é responsável apenas por renderizar o Widget de input do Salt, uma vez que sempre será contido entre aspas duplas.
 
+# Optional Function
+
+#Alternative Function
+
 # How to use the functions to render Complex Widgets
+
+#Json Functions
 
 # What functions supports Parser Pegjs.
 
@@ -121,7 +127,19 @@ Essa é uma lista das funções que possui suporte ao Parser disponível por ess
 - `$mandatoryJson($json)`
 - `$optionalJson($json,$rule)`
 - `$alternativeJson($json,$namealternative,$rule)`
-- ``
-- ``
-- ``
+- `$mandatoryInput($namecomponent,$midlelement)`
+- `$optionalInput($namecomponent,$midlelement,$rule)`
+- `$alternativeInput($namecomponent,$midlelement,$rule,$midlealternative,$namealternative)`
 
+As funções abaixo não possui suporte ao Parser:
+- `$mandatory($multiline, $leftbracket, $midlelement, $rightbracket)`
+- `$optional($multi, $leftbracket, $midlelement, $rightbracket, $aparecer)`
+- `$alternative($multi,$leftbracket, $midlelement, $rightbracket, $plataforma, $leftalternative,$midlealternative,$rightalternative, $multialternative)`
+- `$mandatoryInput($midlelement)`
+- `$optionalInput($midlelement, $rule)`
+- `$alternativeInput($midlelement, $rule, $midlealternative)`
+- `$optionalJson($json)`
+- `$alternativeJson($json)`
+- `$mandatoryInput($midlelement)`
+- `$optionalInput($midlelement, $rule)`
+- `$alternativeInput($midlelement, $rule, $midlealternative)`
