@@ -8,7 +8,8 @@ Além disso, foi feito um Parser para "transformar" o diagrama UML do Salt para 
 
 Para importar as funções de relações de features inclua em seu diagrama Salt do PlantUML o arquivo disponível em [Link](https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml) a partir de um dos comandos !include,!include_many ou !include_once possibilitados pelo PlantUML:
 
-`@startsalt howToImportExample
+`
+@startsalt howToImportExample
 {
     !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
 
@@ -19,19 +20,24 @@ Para importar as funções de relações de features inclua em seu diagrama Salt
     !include_once https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
 
 }
-@endsalt`
+@endsalt
+`
 
 Uma vez feito isso, basta utilizar as funções normalmente em um diagrama UML do PlantUML com o $ seguido do nome da função. Exemplo:
 
-`@startsalt howToCallFunction
+`
+@startsalt howToCallFunction
 {
     !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
 
     $mandatory(0,[, This is my button,])
 }
-@endsalt`
+@endsalt
+`
+
+Note: se quiser utilizar outra função disponível em outro arquivo disponível nesse repositório basta fazer o mesmo processo, apenas certifique de copiar a URL da página raw do código (clicar no botão chamado Raw no lado direito) em questão para importá-lo. 
 
 
 # Mandatory Function
 
-
+Assim como em um Diagrama de Features, uma feature é mandatória se ela aparece em todas
