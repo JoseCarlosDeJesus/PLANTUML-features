@@ -2,13 +2,13 @@
 
 Esse projeto tem o intuito de disponibilizar um método viável para representar um Modelo de Features (Feature Diagram) de uma SPL(Software Product Line) no Wireframe Salt do PlantUML.Sendo assim, o foco é em representar interfaces gráficas de websites com o intuito de ajudar na prototipação e eventual implementação do código front-end utilizando os métodos de uma SPL. Dessa forma, cada widget do Salt é considerado uma feature, sendo possível atribuir as seguintes relações existentes em um Modelo de Features: mandatória, opcional e alternativa e um diagrama UML. Assim, o principal objetivo é ser capaz de representar essas relações ao mesmo tempo que é possível visualizar o resultado graficamente por meio do Wireframe Salt.
 
-Além disso, foi feito um Parser para "transformar" o diagrama UML do Salt para a estrutura de um projeto front-end em React utilizando a estrutura de projeto para a API ReactFeature (disponivel em: [Link]https://github.com/Kadurid/LojaVirtualLPS/tree/dev), servindo como um código prévio.
+Além disso, foi feito um Parser para "transformar" o diagrama UML do Salt para a estrutura de um projeto front-end em React utilizando a estrutura de projeto para a [API ReactFeature](https://github.com/Kadurid/LojaVirtualLPS/tree/dev), servindo como um código prévio.
 
 Se já tiver algum conhecimento prévio de SPLs e Feature Model, depois de ler como importar, pule para a seção de como utilizar as funções. 
 
 # How to Import e Utilize
 
-Para importar as funções de relações de features inclua em seu diagrama Salt do PlantUML o arquivo disponível em [Link](https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml) a partir de um dos comandos !include,!include_many ou !include_once possibilitados pelo PlantUML:
+Para importar as funções de relações de features inclua em seu diagrama Salt do PlantUML o arquivo disponível em [definitiveFeature](https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml) a partir de um dos comandos !include,!include_many ou !include_once possibilitados pelo PlantUML:
 
 ```
 @startsalt howToImportExample
@@ -37,7 +37,7 @@ Uma vez feito isso, basta utilizar as funções normalmente em um diagrama UML d
 @endsalt
 ```
 
-Note: se quiser utilizar outra função disponível em outro arquivo disponível nesse repositório basta fazer o mesmo processo, apenas certifique de copiar a URL da página raw do código (clicar no botão chamado Raw no lado direito) em questão para importá-lo. 
+Note: se quiser utilizar outra função disponível em outro arquivo disponível nesse repositório basta fazer o mesmo processo, apenas certifique de copiar a URL da página Raw do código (clicar no botão chamado Raw no lado direito) em questão para importá-lo. 
 
 # Resumo sobre Feature Model e Software Product Line
 
@@ -134,6 +134,7 @@ Com suporte ao Parser:
 # Alternative Function
 
 A assinatura desse método é dada por `$alternative($multi,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative, $multialternative)` sendo que esse método é responsável por renderizar um Widget caso o valor do parâmetro de controle $rule seja 0 ou outro caso seja 1. Ou seja, caso $rule=0 então o Widget escrito nos parâmetros $multi,$leftbracket,$midlelement,$rightbracket será renderizado (a regra para esses parâmetros é a mesma do método mandatory),já se $rule=1 então o Widget escrito nos parâmetros $multialternative,$leftalternative,$midlealternative,$rightalternative será renderizado.
+Esse método também utiliza do método $mandatory para renderizar os Widgets.
 
 Na versão desse método com suporte ao Parser, `$alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative)` o parâmetro $namecomponent é o nome do componente a ser renderizado no ReactFeature pelo primeiro Widget, enquanto o parâmetro $namealternative representa o nome do componente do segundo Widget.
 
@@ -145,6 +146,53 @@ Com suporte ao Parser:
 `$alternativeInput($namecomponent,$midlelement,$rule,$midlealternative,$namealternative)`
 
 # How to use the functions to render Complex Widgets
+
+Para Widgets do Salt que são representados por mais de uma linha de código, ou que possui separação entre linhas dentro do próprio Widget, como por exemplo Trees and tables, será preciso utilizar-se da Keyword Argument `%newline()` disponível pelo preprocessador do PlantUML ao escrever o parâmetro $midlelement ou seu correspondente no Widget.
+
+Exemplo:
+
+```
+@startsalt ComplexWidgetExample
+{
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    'Advanced table , pay attention to the %newline() keyword where should be a new line to render the Widget
+    $mandatory(1,"{#",". | Column 2 | Column 3 %newline() Row header 1 | value 1 | value 2 %newline() Row header 2 | A long cell | *","}")
+
+    'Tree widget [T]
+    $mandatory(1,"{T","+ World %newline()++ America %newline() +++ Canada %newline() +++ USA %newline() ++++ New York %newline() ++++ Boston %newline() +++ Mexico %newline() ++ Europe %newline() +++ Italy %newline() +++ Germany %newline() ++++ Berlin %newline() ++ Africa","}")
+}
+@endsalt
+```
+
+É possível também renderizar mais de um Widget lado a lado utilizando o caractere "|" dentro do parâmetro.
+
+Exemplo:
+
+```
+@startsalt gridExample
+{
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    $mandatory(0,"","Login: | %chr(34) my name %chr(34)", "")
+    $mandatory(0,"Password: |", "%chr(34) ***oi** %chr(34)", "")
+    $mandatory(0,"[cancel] |","[Ok]", "")
+}
+```
+
+Escolheu-se criar novos métodos para renderizar o Widget de input do Salt, devido a incapacidade de passar aspas duplas como parâmetro no Salt, seja dessa forma '"', ou " " ". Outra forma, porém caso seja de interesse do usuário é utilizar o Keyword Argument `%chr(34)` onde seria escrito as aspas duplas dentro do parâmetro.
+
+Exemplo:
+
+```
+@startsalt chr34KeywordExample
+{
+    $mandatory(0,"","%chr(34) This is a input field %chr(34)","")
+}
+@endsalt
+```
+
+Caso tenha dúvida de como escrever determinado Widget utilizando os métodos acima, acesse esse [arquivo](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/EstudoDeCasoFeature/testallelements.puml) onde foram testados todos os Widgets do Salt disponíveis no [guia do PlantUML](https://plantuml.com/guide) e descoberto algumas maneiras de utilizar as funções para acomodar diferentes cenários que podem ocorrer ao escrever seu arquivo Salt.
 
 # Json Functions
 
