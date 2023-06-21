@@ -65,6 +65,8 @@
         !endif 
     !endprocedure
 
+    'json input
+
     !unquoted procedure $mandatoryJsonInput($json)
         %chr(34) $json.midlelement %chr(34)
     !endprocedure
