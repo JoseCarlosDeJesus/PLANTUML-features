@@ -196,6 +196,19 @@ Caso tenha dúvida de como escrever determinado Widget utilizando os métodos ac
 
 # Json Functions
 
+Todos os três tipos de métodos acimas possuem uma versão em que no lugar de passar diversas variáveis, recebe um parâmetro do tipo JSON contendo como atributos os nomes dos antigos parâmetros para facilitar na digitalização e/ou reuso de variáveis no arquivo Salt.Porém, como escrever os Keywords Arguments do preprocessador do PlantUML não funciona dentro do JSON, os comandos `%newline()` e `%chr(34)` não funcionarão o que ,por conseguinte, impossibilita que Widgets complexos sejam renderizados utilizando essas funções.Portanto, o uso dessas funções restringe-se a Widgets básicos.
+
+Sem suporte ao Parser:
+- `$optionalJson($json)`
+- `$alternativeJson($json)`
+
+Com suporte ao Parser:
+- `$mandatoryJson($json)`
+- `$optionalJson($json,$rule)`
+- `$alternativeJson($json,$namealternative,$rule)`
+
+No Parser, o nome do JSON passado pela função será o nome do componente no ReactFeature. No método optionalJson e alternativeJson o $rule é um parâmetro do tipo String que indica qual será o nome da regra que será exibida no ReactFeature, não sendo a regra de renderização em si, que deve estar contida em um atributo do JSON. No método alternativeJson, o parâmetro $namealternative é do tipo String e indica qual será o nome do segundo componente que poderá ser escolhido na regra alternativa do ReactFeature.
+
 # Parser Pegjs to ReactFeature Api
 
 # What functions supports Parser Pegjs.
