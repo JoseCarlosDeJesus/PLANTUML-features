@@ -145,6 +145,8 @@ Assim como os métodos anteriores, o método alternative possui uma versão para
 Com suporte ao Parser:
 `$alternativeInput($namecomponent,$midlelement,$rule,$midlealternative,$namealternative)`
 
+sendo $namecomponent o nome do primeiro componente a ser renderizado caso seja o primeiro Widget renderizado e $namealternative o nome do segundo caso seja o segundo Widget renderizado de acordo com a regra alternativa do ReactFeature.
+
 # How to use the functions to render Complex Widgets
 
 Para Widgets do Salt que são representados por mais de uma linha de código, ou que possui separação entre linhas dentro do próprio Widget, como por exemplo Trees and tables, será preciso utilizar-se da Keyword Argument `%newline()` disponível pelo preprocessador do PlantUML ao escrever o parâmetro $midlelement ou seu correspondente no Widget.
