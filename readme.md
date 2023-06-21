@@ -111,11 +111,13 @@ que no caso utiliza apenas do parâmetro midlelement pois essa função é respo
 
 # Optional Function
 
-#Alternative Function
+# Alternative Function
 
 # How to use the functions to render Complex Widgets
 
-#Json Functions
+# Json Functions
+
+# Parser Pegjs to ReactFeature Api
 
 # What functions supports Parser Pegjs.
 
