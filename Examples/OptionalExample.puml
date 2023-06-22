@@ -1,0 +1,29 @@
+@startsalt OptionalExample
+{
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    'This variable will be used to control if the Widgets will show or not
+    !$myControlVariable = 1
+
+    'JSON Variable for the JSON's functions
+    !$jsonOptional = { "multiline": 0, "leftbracket": "[", "midlelement": "json opcional", "rightbracket": "]", "rule": 1}
+
+    '$optional($multi, $leftbracket, $midlelement, $rightbracket, $rule) don't supports Parser
+    $optional(1,"{T","+ World %newline()++ America %newline() +++ Canada %newline() +++ USA %newline() ++++ New York %newline() ++++ Boston %newline() +++ Mexico %newline() ++ Europe %newline() +++ Italy %newline() +++ Germany %newline() ++++ Berlin %newline() ++ Africa","}",$myControlVariable)
+
+    '$optionalJson($json) don't supports Parser
+    $optionalJson($jsonOptional)
+
+    '$optionalInput($midlelement, $rule) don't supports Parser
+    $optionalInput("Input without Parser",$myControlVariable)
+
+    '$optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule) supports Parser
+    $optional("NameParser","","Login: | %chr(34) my name %chr(34)","",$myControlVariable)
+
+    '$optionalJson($json,$rule) supports Parser
+    $optionalJson($jsonOptional,"Dummy Text for Parser")
+
+    '$optionalInput($namecomponent,$midlelement,$rule) supports Parser
+    $optionalInput("InputParser","Optional Input Parser",$myControlVariable)
+}
+@endsalt

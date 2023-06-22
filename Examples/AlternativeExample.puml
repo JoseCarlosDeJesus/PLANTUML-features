@@ -1,0 +1,29 @@
+@startsalt AlternativeExample
+{
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    'This variable will be used to control what Widget will be show
+    'in this case will be the second one the 'alternative' one
+    !$myControlVariable = 1
+
+    'JSON Variable for the JSON's functions
+    !$jsonAlternative = { "multiline": 0, "leftbracket": "[", "midlelement": "ui luigi", "rightbracket": "]", "rule": 0 , "multialternative": 0, "leftalternative": "{*", "midlealternative": "<&menu> | <&cart>", "rightalternative": "}"}
+
+    '$alternative($multi,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative, $multialternative) don't supports Parser
+    $alternative(1,"{*","Menu | <b>Another field | the Menu","}",$myControlVariable,"{*","<&menu> | <&cart> %newline() <&menu> | Banana | Apple | - | Avocado","}",0)
+    
+    '$alternativeInput($midlelement, $rule, $midlealternative) don't supports Parser
+    $alternativeInput("first widget",$myControlVariable,"second widget")
+
+    '$alternativeJson($json) don't supports Parser
+    $alternativeJson($jsonAlternative)
+
+    '$alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative) supports Parser
+    $alternative("first widget 1",1,"{*","Menu | <b>Another field | the Menu","}",$myControlVariable,"second widget","{*","<&menu> | <&cart> %newline() <&menu> | Banana | Apple | - | Avocado","}",0)
+
+    '$alternativeJson($json,$namealternative,$rule) supports Parser
+    $alternativeJson($jsonAlternative,"json with name","text for the Parser only")
+
+    '$alternativeInput($namecomponent,$midlelement,$rule,$midlealternative,$namealternative) supports Parser
+    $alternativeInput("name first widget","first widget in input",$myControlVariable,"input of the second widget","name second widget")
+}

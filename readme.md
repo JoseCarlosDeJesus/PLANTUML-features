@@ -115,6 +115,33 @@ $mandatoryInput($midlelement)
 
 que no caso utiliza apenas do parâmetro midlelement pois essa função é responsável apenas por renderizar o Widget de input do Salt, uma vez que sempre será contido entre aspas duplas.
 
+Example:
+
+```
+@startsalt MandatoryExample
+{
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    '$mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket) supports Parser.
+    $mandatory("the name of the component",0, "^", "Droplist", "^")
+
+    !$jsonMandatory = { "multiline": 0, "leftbracket": "[", "midlelement": "json mandatorio", "rightbracket": "]"}
+
+    '$mandatoryJson($json) supports Parser
+    $mandatoryJson($jsonMandatory)
+
+    '$mandatoryInput($namecomponent,$midlelement) supports Parser
+    $mandatoryInput("MandatoryInputWithParser","this will be in the input field")
+
+    '$mandatoryInput($midlelement) don't supports Parser
+    $mandatoryInput("input without Parser")
+
+    '$mandatory($multiline, $leftbracket, $midlelement, $rightbracket) don't supports Parser
+    $mandatory(0,(),Unchecked radio,"")
+}
+@endsalt
+```
+
 # Optional Function
 
 A assinatura do método optional é dada por `$optional($multi, $leftbracket, $midlelement, $rightbracket, $rule)` contendo os mesmos parâmetros que as funções mandatory, pois essa utiliza a função mandatory para renderizar o Widget. Porém, nesse método há um parâmetro de controle chamado $rule que informa se o Widget deve ser renderizado ou não no momento. Esse parâmetro funciona como um booleano, utilizando a mesma convenção de 0 para falso e 1 para verdadeiro.
@@ -130,6 +157,39 @@ Outra forma para fazer o Widget de input no Salt com o método optional, da mesm
 Com suporte ao Parser:
 
 `$optionalInput($namecomponent,$midlelement,$rule)`
+
+Example:
+```
+@startsalt OptionalExample
+{
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    'This variable will be used to control if the Widgets will show or not
+    !$myControlVariable = 1
+
+    'JSON Variable for the JSON's functions
+    !$jsonOptional = { "multiline": 0, "leftbracket": "[", "midlelement": "json opcional", "rightbracket": "]", "rule": 1}
+
+    '$optional($multi, $leftbracket, $midlelement, $rightbracket, $rule) don't supports Parser
+    $optional(1,"{T","+ World %newline()++ America %newline() +++ Canada %newline() +++ USA %newline() ++++ New York %newline() ++++ Boston %newline() +++ Mexico %newline() ++ Europe %newline() +++ Italy %newline() +++ Germany %newline() ++++ Berlin %newline() ++ Africa","}",$myControlVariable)
+
+    '$optionalJson($json) don't supports Parser
+    $optionalJson($jsonOptional)
+
+    '$optionalInput($midlelement, $rule) don't supports Parser
+    $optionalInput("Input without Parser",$myControlVariable)
+
+    '$optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule) supports Parser
+    $optional("NameParser","","Login: | %chr(34) my name %chr(34)","",$myControlVariable)
+
+    '$optionalJson($json,$rule) supports Parser
+    $optionalJson($jsonOptional,"Dummy Text for Parser")
+
+    '$optionalInput($namecomponent,$midlelement,$rule) supports Parser
+    $optionalInput("InputParser","Optional Input Parser",$myControlVariable)
+}
+@endsalt
+```
 
 # Alternative Function
 
@@ -147,6 +207,38 @@ Com suporte ao Parser:
 
 sendo $namecomponent o nome do primeiro componente a ser renderizado caso seja o primeiro Widget renderizado e $namealternative o nome do segundo caso seja o segundo Widget renderizado de acordo com a regra alternativa do ReactFeature.
 
+Example:
+```
+@startsalt AlternativeExample
+{
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    'This variable will be used to control what Widget will be show
+    'in this case will be the second one the 'alternative' one
+    !$myControlVariable = 1
+
+    'JSON Variable for the JSON's functions
+    !$jsonAlternative = { "multiline": 0, "leftbracket": "[", "midlelement": "ui luigi", "rightbracket": "]", "rule": 0 , "multialternative": 0, "leftalternative": "{*", "midlealternative": "<&menu> | <&cart>", "rightalternative": "}"}
+
+    '$alternative($multi,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative, $multialternative) don't supports Parser
+    $alternative(1,"{*","Menu | <b>Another field | the Menu","}",$myControlVariable,"{*","<&menu> | <&cart> %newline() <&menu> | Banana | Apple | - | Avocado","}",0)
+    
+    '$alternativeInput($midlelement, $rule, $midlealternative) don't supports Parser
+    $alternativeInput("first widget",$myControlVariable,"second widget")
+
+    '$alternativeJson($json) don't supports Parser
+    $alternativeJson($jsonAlternative)
+
+    '$alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative) supports Parser
+    $alternative("first widget 1",1,"{*","Menu | <b>Another field | the Menu","}",$myControlVariable,"second widget","{*","<&menu> | <&cart> %newline() <&menu> | Banana | Apple | - | Avocado","}",0)
+
+    '$alternativeJson($json,$namealternative,$rule) supports Parser
+    $alternativeJson($jsonAlternative,"json with name","text for the Parser only")
+
+    '$alternativeInput($namecomponent,$midlelement,$rule,$midlealternative,$namealternative) supports Parser
+    $alternativeInput("name first widget","first widget in input",$myControlVariable,"input of the second widget","name second widget")
+}
+```
 # How to use the functions to render Complex Widgets
 
 Para Widgets do Salt que são representados por mais de uma linha de código, ou que possui separação entre linhas dentro do próprio Widget, como por exemplo Trees and tables, será preciso utilizar-se da Keyword Argument `%newline()` disponível pelo preprocessador do PlantUML ao escrever o parâmetro $midlelement ou seu correspondente no Widget.
@@ -196,7 +288,7 @@ Exemplo:
 
 Caso tenha dúvida de como escrever determinado Widget utilizando os métodos acima, acesse esse [arquivo](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Examples/testAllElements.puml) onde foram testados todos os Widgets do Salt disponíveis no [guia do PlantUML](https://plantuml.com/guide) e descoberto algumas maneiras de utilizar as funções para acomodar diferentes cenários que podem ocorrer ao escrever seu arquivo Salt.
 
-# Json Functions
+# JSON Functions
 
 Todos os três tipos de métodos acimas possuem uma versão em que no lugar de passar diversas variáveis, recebe um parâmetro do tipo JSON contendo como atributos os nomes dos antigos parâmetros para facilitar na digitalização e/ou reuso de variáveis no arquivo Salt.Porém, como escrever os Keywords Arguments do preprocessador do PlantUML não funciona dentro do JSON, os comandos `%newline()` e `%chr(34)` não funcionarão o que ,por conseguinte, impossibilita que Widgets complexos sejam renderizados utilizando essas funções.Portanto, o uso dessas funções restringe-se a Widgets básicos.
 
@@ -211,11 +303,31 @@ Com suporte ao Parser:
 
 No Parser, o nome do JSON passado pela função será o nome do componente no ReactFeature. No método optionalJson e alternativeJson o $rule é um parâmetro do tipo String que indica qual será o nome da regra que será exibida no ReactFeature, não sendo a regra de renderização em si, que deve estar contida em um atributo do JSON. No método alternativeJson, o parâmetro $namealternative é do tipo String e indica qual será o nome do segundo componente que poderá ser escolhido na regra alternativa do ReactFeature.
 
-# Parser Pegjs to ReactFeature Api
+Example:
+```
+@startsalt jsonexample
+{   
+    'json functions just work with basic widgets! Be warned!
+
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    !$variavelexemplo = { "multiline": 0, "leftbracket": "[", "midlelement": "json mandatorio", "rightbracket": "]"}
+    !$variavelexemplo1 = { "multiline": 0, "leftbracket": "[", "midlelement": "json opcional", "rightbracket": "]", "rule": 1}
+    !$variavelalternativa = { "multiline": 0, "leftbracket": "[", "midlelement": "ui luigi", "rightbracket": "]", "rule": 0 , "multialternative": 0, "leftalternative": "{*", "midlealternative": "<&menu> | <&cart>", "rightalternative": "}"}
+
+    $mandatoryJson($variavelexemplo)
+    $optionalJson($variavelexemplo1)
+    $alternativeJson($variavelalternativa)
+
+}
+@endsalt
+```
+
+# Parser Pegjs to ReactFeature API
 
 # What functions supports Parser Pegjs.
 
-Essa é uma lista das funções que possui suporte ao Parser disponível por esse projeto em [Link](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Parser/feature.pegjs):
+Essa é uma lista das funções que possui suporte ao Parser disponível por esse projeto pelo [Parser](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Parser/feature.pegjs):
 
 - `$mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket)`
 - `$optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule)`
@@ -236,6 +348,3 @@ As funções abaixo não possui suporte ao Parser:
 - `$alternativeInput($midlelement, $rule, $midlealternative)`
 - `$optionalJson($json)`
 - `$alternativeJson($json)`
-- `$mandatoryInput($midlelement)`
-- `$optionalInput($midlelement, $rule)`
-- `$alternativeInput($midlelement, $rule, $midlealternative)`

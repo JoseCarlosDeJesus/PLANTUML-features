@@ -1,0 +1,23 @@
+@startsalt MandatoryExample
+{
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    '$mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket) supports Parser.
+    $mandatory("the name of the component",0, "^", "Droplist", "^")
+
+    'JSON Variable for the JSON's functions
+    !$jsonMandatory = { "multiline": 0, "leftbracket": "[", "midlelement": "json mandatorio", "rightbracket": "]"}
+
+    '$mandatoryJson($json) supports Parser
+    $mandatoryJson($jsonMandatory)
+
+    '$mandatoryInput($namecomponent,$midlelement) supports Parser
+    $mandatoryInput("MandatoryInputWithParser","this will be in the input field")
+
+    '$mandatoryInput($midlelement) don't supports Parser
+    $mandatoryInput("input without Parser")
+
+    '$mandatory($multiline, $leftbracket, $midlelement, $rightbracket) don't supports Parser
+    $mandatory(0,(),Unchecked radio,"")
+}
+@endsalt
