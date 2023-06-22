@@ -1,14 +1,16 @@
-# Propósito
+# Purpose of this Project
 
-Esse projeto tem o intuito de disponibilizar um método viável para representar um Modelo de Features (Feature Diagram) de uma SPL(Software Product Line) no Wireframe Salt do PlantUML.Sendo assim, o foco é em representar interfaces gráficas de websites com o intuito de ajudar na prototipação e eventual implementação do código front-end utilizando os métodos de uma SPL. Dessa forma, cada widget do Salt é considerado uma feature, sendo possível atribuir as seguintes relações existentes em um Modelo de Features: mandatória, opcional e alternativa e um diagrama UML. Assim, o principal objetivo é ser capaz de representar essas relações ao mesmo tempo que é possível visualizar o resultado graficamente por meio do Wireframe Salt.
+This project aims to provide a viable method to represent a Model of Features (Feature Diagram) of an SPL (Software Product Line) in Wireframe Salt of PlantUML.
+Therefore, the focus is on representing graphical interfaces of websites in order to help in the prototyping and eventual implementation of the front-end code using the methods of an SPL.
+In this way, each Salt widget is considered a feature, being possible to assign the following existing relationships in a Feature Model: mandatory, optional and alternative and a UML diagram. Thus, the main objective is to be able to represent these relationships while being able to visualize the result graphically through Wireframe Salt.
 
-Além disso, foi feito um Parser para "transformar" o diagrama UML do Salt para a estrutura de um projeto front-end em React utilizando a estrutura de projeto para a [API ReactFeature](https://github.com/Kadurid/LojaVirtualLPS/tree/dev), servindo como um código prévio.
+In addition, a Parser was made to transform the Salt UML diagram to the structure of a front-end project in React using the project structure for the [API ReactFeature](https://github.com/Kadurid/LojaVirtualLPS /tree/dev), serving as a precode.
 
-Se já tiver algum conhecimento prévio de SPLs e Feature Model, depois de ler como importar, pule para a seção de como utilizar as funções. 
+If you already have some prior knowledge of SPLs and the Feature Model, after reading how to import, skip ahead to the section on how to use the functions.
 
 # How to Import e Utilize
 
-Para importar as funções de relações de features inclua em seu diagrama Salt do PlantUML o arquivo disponível em [definitiveFeature](https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml) a partir de um dos comandos !include,!include_many ou !include_once possibilitados pelo PlantUML:
+To import the feature relationship functions, include in your PlantUML Salt diagram the file available at [definitiveFeature](https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml) from one of the !include, !include_many or !include_once commands made possible by PlantUML:
 
 ```
 @startsalt howToImportExample
@@ -25,7 +27,7 @@ Para importar as funções de relações de features inclua em seu diagrama Salt
 @endsalt
 ```
 
-Uma vez feito isso, basta utilizar as funções normalmente em um diagrama UML do PlantUML com o $ seguido do nome da função. Exemplo:
+Once that's done, just use the functions as normal in a PlantUML UML diagram with the $ followed by the name of the function. Example:
 
 ```
 @startsalt howToCallFunction
@@ -37,56 +39,56 @@ Uma vez feito isso, basta utilizar as funções normalmente em um diagrama UML d
 @endsalt
 ```
 
-Note: se quiser utilizar outra função disponível em outro arquivo disponível nesse repositório basta fazer o mesmo processo, apenas certifique de copiar a URL da página Raw do código (clicar no botão chamado Raw no lado direito) em questão para importá-lo. 
+Note: if you want to use another function available in another file available in this repository, just do the same process, just make sure to copy the URL of the Raw page of the code (click on the button called Raw on the right side) in question to import it.
 
-# Resumo sobre Feature Model e Software Product Line
+# Summary on Feature Model and Software Product Line
 
-***Software Product Line(SPL):*** tem como proposta a construção sistemática de software baseada em uma família de produtos de determinada área de interesse, auxiliando tanto na construção de novas aplicações a partir de artefatos reutilizáveis (desenvolvimento com reutilização),  quanto na construção desses artefatos (desenvolvimento para reutilização) (LINDEN et al., 2007).
+***Software Product Line(SPL):*** proposes the systematic construction of software based on a family of products from a given area of interest, helping both in the construction of new applications from reusable artifacts (development with reuse) and in the construction of these artifacts (development for reuse) (LINDEN et al., 2007).
 
-Assim, temos que determinar a partir de qual critério construímos esses artefatos reutilizáveis, para isso utiliza-se o conceito de *Variabilidade* e *Engenharia de Domínio de uma SPL*:
+Thus, we have to determine from which criteria we build these reusable artifacts, for this we use the concept of *Variability* and *Domain Engineering of an SPL*:
 
-***Variabilidade:*** variabilidade de software é a habilidade de um sistema de software ou um artefato de ser eficientemente estendido, modificado, customizado ou configurado para um contexto particular. 
+***Variabilidade:*** Software variability is the ability of a software system or artifact to be efficiently extended, modified, customized or configured for a particular context.
 
-***Engenharia de Domínio para desenvolvimento de SPL:*** processo de desenvolver artefatos reutilizáveis de software para um domínio.(CZARNECKI; EISENECKER., 2000). 
+***Engenharia de Domínio para desenvolvimento de SPL:*** process of developing reusable software artifacts for a domain. (CZARNECKI; EISENECKER., 2000).
 
-Entre esses artefatos reutilizáveis de uma SPL temos o Feature Model e as Features:
+Among these reusable artifacts of an SPL are the Feature Model and the Features:
 
-***Feature Model:*** modela todos os possíveis produtos de uma SPL, definindo quais são as features de uma SPL e as relações entre elas. É baseado no FODA (Feature-Oriented Domain Analysis) que por sua vez é responsável por produzir um modelo de domínio identificando e modelando semelhanças principais e variabilidades entre as diversas aplicações de domínio.
+***Feature Model:*** models all possible products of an SPL, defining what are the features of an SPL and the relationships between them. It is based on FODA (Feature-Oriented Domain Analysis) which in turn is responsible for producing a domain model by identifying and modeling key similarities and variability between the various domain applications.
 
-***Feature:*** é um aspecto visível, proeminente ou distinto, qualidade ou característica de um sistema ou sistemas de software (KANG et al., 1990).
+***Feature:*** it is a visible, prominent or distinct aspect, quality or characteristic of a software system or systems (KANG et al., 1990).
 
-No caso desse projeto, pode-se dizer que o domínio é a geração de uma representação gráfica de um website (a partir dessa finalidade do wireframe Salt).
+In the case of this project, it can be said that the domain is the generation of a graphic representation of a website (based on this purpose of the Salt wireframe).
 
-# Tipos de Relações entre Features
-O Feature Model é composto de um diagrama de features organizadas hierarquicamente composta por relações entre uma feature pai e suas features filhas(subfeatures) que podem apresentar os seguintes tipos:
+# Types of Relationships between Features
+The Feature Model is composed of a diagram of hierarchically organized features composed of relationships between a parent feature and its child features (subfeatures) that can present the following types:
 
-***Mandatory:*** a feature filha é incluída em todos os produtos que a  feature pai aparece.
+***Mandatory:*** the child feature is included in every product the parent feature appears in.
 
-***Optional:*** a feature filha pode ser incluída ou não em todos os produtos em que a sua feature pai aparece.
+***Optional:*** the child feature may or may not be included in all products where its parent feature appears.
 
-***Alternativa/XOr:*** Selecionamos apenas uma feature filha de um conjunto de features filhas quando a feature pai é selecionada. 
+***Alternativa/XOr:*** We select only one child feature from a set of child features when the parent feature is selected.
 
-No caso desse projeto, a feature pai, ou raiz de todas as outras, seria a página/tela gerada pelo arquivo Salt.
+In the case of this project, the parent feature, or the root of all the others, would be the page/screen generated by the Salt file.
 
-Note que não há suporte nesse projeto para o tipo de relação Or entre features por essa não ter correspondente na API ReactFeature.
+Note that there is no support in this project for the type of Or relationship between features because it has no correspondent in the ReactFeature API.
 
 # Mandatory Function
 
-A assinatura do método mandatory é dado por `$mandatory($multiline, $leftbracket, $midlelement, $rightbracket)` se o uso for restrito para o Salt (sem o suporte do Parser em Pegjs para a API ReactFeature). Os parâmetros significam:
+The mandatory method signature is given by `$mandatory($multiline, $leftbracket, $midlelement, $rightbracket)` if usage is restricted to Salt (no Parser support in Pegjs for ReactFeature API). The parameters mean:
 
-***$multiline:*** diz se o widget do Salt que deseja-se representar deve ser renderizado em uma linha ou em mais. Por exemplo, para fazer um botão é preciso de apenas uma linha de código no Salt necessariamente assim `[This is my Button]`, porém se quiser um Tree Widget ou uma tabela é preciso ter outras linhas de código para renderizá-los. Esse parâmetro indica se o Widget renderizado será um Widget simples, de uma única linha, ou não. Como não existe o tipo de varíavel Boolean no PlantUML definiu-se 0 como falso e 1 como verdadeiro. Assim,a representação é se o valor desse parâmetro for 0, então é um Widget simples.Caso seja o valor 1, é um Widget multilinha.  
-Tipo de Variável: Integer Number.
+***$multiline:*** says if the Salt widget you want to represent should be rendered in one line or more. For example, to make a button you need only one line of code in Salt necessarily like `[This is my Button]`, but if you want a Tree Widget or a table you need other lines of code to render them. This parameter indicates whether the rendered Widget will be a simple, single-line Widget or not. As there is no type of Boolean variable in PlantUML, 0 was defined as false and 1 as true. Thus, the representation is if the value of this parameter is 0, then it is a simple widget. If the value is 1, it is a multiline widget.
+Variable Type: Integer Number.
 
-***$leftbracket:*** representa a primeira parte escrita necessária para representar o Widget no Salt.Por exemplo, para renderizar um botão que seria assim no Salt `[this is my button]`, é preciso iniciar com um caractere inicial, nesse exemplo é o caractere "[". Outro exemplo, caso agora o Widget for abas `{/ My Tabs 1 | My Tabs 2}`, o caractere inicial é "{/", portanto esse seria o valor do parâmetro *$leftbracket* nesse caso.
-Tipo de Variável: String.
+***$leftbracket:*** represents the first written part needed to represent the Widget in Salt. For example, to render a button that would look like this in Salt `[this is my button]`, you need to start with a leading character, in this example it is the character "[" . Another example, if now the Widget for tabs `{/ My Tabs 1 | My Tabs 2}`, the leading character is "{/", so that would be the value of the *$leftbracket* parameter in this case.
+Variable Type: String.
 
-***$midlelement:*** representa a parte entre o caractere inicial necessário para iniciar a escrita de um Widget e o caractere final que indica o término da escrita de um Widget. Por exemplo, no Widget de um botão `[this is my button]` o midlelement seria igual a "this is my button" que está entre o caractere inicial "[" e o caractere final "]" de um botão. 
-Tipo de Variável: String.
+***$midlelement:*** represents the part between the initial character necessary to start writing a Widget and the final character that indicates the end of writing a Widget. For example, in a button widget `[this is my button]` the midlelement would be equal to "this is my button" which is between the initial character "[" and the final character "]" of a button.
+Variable Type: String.
 
-***$rightbracket:*** representa o caractere final necessário para indicar que acabou a escrita de um Widget no Salt. Por exemplo, em um botão no Salt `[ Hello World ]` o parâmetro rightbracket seria o caractere "]".
-Tipo de Variável: String.
+***$rightbracket:*** represents the final character needed to indicate that a Widget is finished writing in Salt. For example, on a Salt button `[Hello World]` the rightbracket parameter would be the character "]".
+Variable Type: String.
 
-Notas: é possível deixar os parâmetros $leftbracket, $midlelement e $rightbracket vazios e mesmo assim, renderizar um Widget como nesse caso em que $rightbracket é vazio:
+Notes: It is possible to leave the parameters $leftbracket, $midlelement and $rightbracket empty and still render a Widget as in this case where $rightbracket is empty:
 
 ```
 @startsalt EmptyParameters
@@ -97,23 +99,22 @@ Notas: é possível deixar os parâmetros $leftbracket, $midlelement e $rightbra
 }
 @endsalt
 ```
-Além disso, há outra função mandatory com suporte ao Parser do Pegjs que possui a seguinte assinatura de método:
+Additionally, there is another mandatory function with Pegjs Parser support that has the following method signature:
 
 `$mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket)`
 
-Nesse método,assim como em outros com suporte para o Parser, há a inclusao do parâmetro $namecomponent assim como em todas as funções que tem suporte ao Parser. No Salt em si não há mudança na forma que é renderizado os Widgets.
+In this method, as well as in others with Parser support, the $namecomponent parameter is included, as in all functions that have Parser support. In Salt itself there is no change in the way Widgets are rendered.
 
-***$namecomponent:*** parâmetro do tipo String, que é responsável por dizer ao Parser qual será o nome do component do React chamado pelo componente MandatoryFeature da API ReactFeature.
+***$namecomponent:*** parameter of type String, which is responsible for telling the Parser what will be the name of the React component called by the MandatoryFeature component of the ReactFeature API.
 
-Por último, há o método mandatoryInput que também possui suporte para o Parser, com a assinatura de método:
-
+Lastly, there is the mandatoryInput method which also has support for Parser, with the method signature:
 `$mandatoryInput($namecomponent,$midlelement)`
 
-Ou para uso exclusivo no Salt:
+Or for exclusive use in Salt:
 
-$mandatoryInput($midlelement)
+`$mandatoryInput($midlelement)`
 
-que no caso utiliza apenas do parâmetro midlelement pois essa função é responsável apenas por renderizar o Widget de input do Salt, uma vez que sempre será contido entre aspas duplas.
+which in this case only uses the midlelement parameter because this function is only responsible for rendering the Salt input widget, since it will always be enclosed in double quotes.
 
 Example:
 
@@ -144,17 +145,17 @@ Example:
 
 # Optional Function
 
-A assinatura do método optional é dada por `$optional($multi, $leftbracket, $midlelement, $rightbracket, $rule)` contendo os mesmos parâmetros que as funções mandatory, pois essa utiliza a função mandatory para renderizar o Widget. Porém, nesse método há um parâmetro de controle chamado $rule que informa se o Widget deve ser renderizado ou não no momento. Esse parâmetro funciona como um booleano, utilizando a mesma convenção de 0 para falso e 1 para verdadeiro.
+The signature of the optional method is given by `$optional($multi, $leftbracket, $midlelement, $rightbracket, $rule)` containing the same parameters as the mandatory functions, as this uses the mandatory function to render the Widget. However, in this method there is a control parameter called $rule that informs whether the Widget should be rendered or not at the moment. This parameter works like a boolean, using the same convention of 0 for false and 1 for true.
 
-Para utilizar essa função em conjunto com o Parser utilize essa versão:
+To use this function in conjunction with Parser, use this version:
 
 `$optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule)`
 
-Outra forma para fazer o Widget de input no Salt com o método optional, da mesma forma que acontece com o método mandatory:
+Another way to make the input Widget in Salt with the optional method, in the same way as with the mandatory method:
 
 `$optionalInput($midlelement, $rule)`
 
-Com suporte ao Parser:
+With Parser support:
 
 `$optionalInput($namecomponent,$midlelement,$rule)`
 
@@ -193,19 +194,19 @@ Example:
 
 # Alternative Function
 
-A assinatura desse método é dada por `$alternative($multi,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative, $multialternative)` sendo que esse método é responsável por renderizar um Widget caso o valor do parâmetro de controle $rule seja 0 ou outro caso seja 1. Ou seja, caso $rule=0 então o Widget escrito nos parâmetros $multi,$leftbracket,$midlelement,$rightbracket será renderizado (a regra para esses parâmetros é a mesma do método mandatory),já se $rule=1 então o Widget escrito nos parâmetros $multialternative,$leftalternative,$midlealternative,$rightalternative será renderizado.
-Esse método também utiliza do método $mandatory para renderizar os Widgets.
+The signature of this method is given by `$alternative($multi,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative, $multialternative)` and this method is responsible for rendering a Widget in case the value of the control parameter $rule is 0 or another case is 1. That is, if $rule=0 then the Widget written in the parameters $multi,$leftbracket,$midlelement,$rightbracket will be rendered (the rule for these parameters is the same as the mandatory method), since if $rule=1 then the Widget written in the parameters $multialternative,$leftalternative,$midlealternative,$rightalternative will be rendered.
+This method also uses the $mandatory method to render the Widgets.
 
-Na versão desse método com suporte ao Parser, `$alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative)` o parâmetro $namecomponent é o nome do componente a ser renderizado no ReactFeature pelo primeiro Widget, enquanto o parâmetro $namealternative representa o nome do componente do segundo Widget.
+In the Parser-supported version of this method, `$alternative($namecomponent,$multiline,$leftbracket, $midlelement, $rightbracket, $rule, $namealternative, $leftalternative,$midlealternative,$rightalternative,$multialternative)` the parameter $ namecomponent is the name of the component to be rendered in ReactFeature by the first Widget, while the parameter $namealternative represents the name of the component of the second Widget.
 
-Assim como os métodos anteriores, o método alternative possui uma versão para representar o Widget de Input do Salt:
+Like the previous methods, the alternative method has a version to represent Salt's Input Widget:
 
 `$alternativeInput($midlelement, $rule, $midlealternative)`
 
-Com suporte ao Parser:
+With Parser support:
 `$alternativeInput($namecomponent,$midlelement,$rule,$midlealternative,$namealternative)`
 
-sendo $namecomponent o nome do primeiro componente a ser renderizado caso seja o primeiro Widget renderizado e $namealternative o nome do segundo caso seja o segundo Widget renderizado de acordo com a regra alternativa do ReactFeature.
+where $namecomponent is the name of the first component to be rendered if it is the first Widget rendered and $namealternative is the name of the second if it is the second Widget rendered according to the ReactFeature alternative rule.
 
 Example:
 ```
@@ -241,9 +242,9 @@ Example:
 ```
 # How to use the functions to render Complex Widgets
 
-Para Widgets do Salt que são representados por mais de uma linha de código, ou que possui separação entre linhas dentro do próprio Widget, como por exemplo Trees and tables, será preciso utilizar-se da Keyword Argument `%newline()` disponível pelo preprocessador do PlantUML ao escrever o parâmetro $midlelement ou seu correspondente no Widget.
+For Salt Widgets that are represented by more than one line of code, or that have separation between lines within the Widget itself, such as Trees and tables, it will be necessary to use the Keyword Argument `%newline()` available by the preprocessor from PlantUML by writing the $midlelement parameter or its corresponding in the Widget.
 
-Exemplo:
+Example:
 
 ```
 @startsalt ComplexWidgetExample
@@ -259,9 +260,9 @@ Exemplo:
 @endsalt
 ```
 
-É possível também renderizar mais de um Widget lado a lado utilizando o caractere "|" dentro do parâmetro.
+It is also possible to render more than one Widget side by side using the "|" character. inside the parameter.
 
-Exemplo:
+Example:
 
 ```
 @startsalt gridExample
@@ -274,9 +275,9 @@ Exemplo:
 }
 ```
 
-Escolheu-se criar novos métodos para renderizar o Widget de input do Salt, devido a incapacidade de passar aspas duplas como parâmetro no Salt, seja dessa forma '"', ou " " ". Outra forma, porém caso seja de interesse do usuário é utilizar o Keyword Argument `%chr(34)` onde seria escrito as aspas duplas dentro do parâmetro.
+We chose to create new methods to render Salt's input Widget, due to the inability to pass double quotes as a parameter in Salt, either '"', or " " ". Another way, however if the user is interested, is to use the Keyword Argument `%chr(34)` where the double quotes would be written inside the parameter.
 
-Exemplo:
+Example:
 
 ```
 @startsalt chr34KeywordExample
@@ -286,22 +287,22 @@ Exemplo:
 @endsalt
 ```
 
-Caso tenha dúvida de como escrever determinado Widget utilizando os métodos acima, acesse esse [arquivo](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Examples/testAllElements.puml) onde foram testados todos os Widgets do Salt disponíveis no [guia do PlantUML](https://plantuml.com/guide) e descoberto algumas maneiras de utilizar as funções para acomodar diferentes cenários que podem ocorrer ao escrever seu arquivo Salt.
+If you have doubts about how to write a certain Widget using the methods above, access this [file](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Examples/testAllElements.puml) where is all the Widgets of the Salt available in the [PlantUML Guide](https://plantuml.com/guide) and discovered some ways to use the functions to accommodate different scenarios that can occur when writing your Salt.
 
 # JSON Functions
 
-Todos os três tipos de métodos acimas possuem uma versão em que no lugar de passar diversas variáveis, recebe um parâmetro do tipo JSON contendo como atributos os nomes dos antigos parâmetros para facilitar na digitalização e/ou reuso de variáveis no arquivo Salt.Porém, como escrever os Keywords Arguments do preprocessador do PlantUML não funciona dentro do JSON, os comandos `%newline()` e `%chr(34)` não funcionarão o que ,por conseguinte, impossibilita que Widgets complexos sejam renderizados utilizando essas funções.Portanto, o uso dessas funções restringe-se a Widgets básicos.
+All three types of methods above have a version in which, instead of passing several variables, it receives a JSON type parameter containing the names of the old parameters as attributes to facilitate digitization and/or reuse of variables in the Salt file. writing the Keywords Arguments from the PlantUML preprocessor does not work inside the JSON, the `%newline()` and `%chr(34)` commands will not work which therefore makes it impossible for complex widgets to be rendered using these functions. the use of these functions is restricted to basic Widgets.
 
-Sem suporte ao Parser:
+No Parser support:
 - `$optionalJson($json)`
 - `$alternativeJson($json)`
 
-Com suporte ao Parser:
+With Parser support:
 - `$mandatoryJson($json)`
 - `$optionalJson($json,$rule)`
 - `$alternativeJson($json,$namealternative,$rule)`
 
-No Parser, o nome do JSON passado pela função será o nome do componente no ReactFeature. No método optionalJson e alternativeJson o $rule é um parâmetro do tipo String que indica qual será o nome da regra que será exibida no ReactFeature, não sendo a regra de renderização em si, que deve estar contida em um atributo do JSON. No método alternativeJson, o parâmetro $namealternative é do tipo String e indica qual será o nome do segundo componente que poderá ser escolhido na regra alternativa do ReactFeature.
+In Parser, the JSON name passed by the function will be the name of the component in the ReactFeature. In the optionalJson and alternativeJson method, $rule is a String parameter that indicates the name of the rule that will be displayed in the ReactFeature, not being the rendering rule itself, which must be contained in a JSON attribute. In the alternativeJson method, the $namealternative parameter is of type String and indicates the name of the second component that can be chosen in the alternative rule of ReactFeature.
 
 Example:
 ```
@@ -325,22 +326,22 @@ Example:
 
 # Parser Pegjs to ReactFeature API
 
-Nesse projeto foi feito um [Parser](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Parser/feature.pegjs) em peg.js(Parser Generator for Javascript). Um Parser é um programa que recebe um valor de entrada, o analisa em partes e o converte em um valor de saída de acordo com certas regras definidas pelo parser em específico. O Parser feito tem o intuito de fornecer uma estrutura de código de um componente de classe em React para depois ser preenchido de acordo com as regras e especificações do desenvolvedor para torná-lo funcional para a [API ReactFeature](https://github.com/Kadurid/LojaVirtualLPS/tree/dev) e ser compilado via o framework Frontend React.
+In this project, a [Parser](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Parser/feature.pegjs) was made in peg.js(Parser Generator for Javascript). A Parser is a program that takes an input value, parses it into parts and converts it into an output value according to certain rules defined by the specific parser. The Parser made is intended to provide a code structure of a class component in React to be filled in according to the rules and specifications of the developer to make it functional for the [API ReactFeature](https://github. com/Kadurid/LojaVirtualLPS/tree/dev) and be compiled via the Frontend React framework.
 
-Desse modo, o intuito desse parser é transformar uma chamada dos métodos mandatory,optional e alternative apresentados e transformá-los em uma chamada de um dos componentes correspondentes da API React Feature: "<MandatoryFeature/>","<OptionalFeature/>" ou "<AlternativeFeature/>".Para exemplificar, digamos que eu chamei o método mandatory no Salt da seguinte forma `$optional("barraPesquisa",0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer)`, o parser o traduzirá assim para o ReactFeature:
+Thus, the purpose of this parser is to transform a call of the presented mandatory, optional and alternative methods and transform them into a call of one of the corresponding components of the React Feature API: "<MandatoryFeature/>","<OptionalFeature/>" or "<AlternativeFeature/>". For example, let's say I called the mandatory method in Salt like `$optional("barraSearch",0,"","%chr(34) Search Here %chr(34) |" ,"",$appear)`, the parser will translate it to the ReactFeature like this:
 
 `<OptionalFeature component=barraPesquisa rules={aparecer}/>`
 
-Assim, os parâmetros dessas funções $namecomponent e $namealternative será interpretado como o nome do componente a ser renderizado por esse componente do ReactFeature e o parâmetro $rule como a regra de renderização desse componente pelo ReactFeature no caso de ser os métodos optional ou alternative.Caso seja um método JSON que está sendo chamado o nome do parâmetro do tipo JSON será usado o nome dele no lugar do parâmetro $namecomponent.
+Thus, the parameters of these functions $namecomponent and $namealternative will be interpreted as the name of the component to be rendered by this ReactFeature component and the $rule parameter as the rendering rule of this component by ReactFeature in case it is the optional or alternative methods. If it is a JSON method being called, the name of the JSON type parameter will be used instead of the $namecomponent parameter.
 
-Para maior clareza, suponhamos que foi feita a seguinte chamada de método alternative `$alternative("first widget 1",1,"{*","Menu | <b>Another field | the Menu","}",$myControlVariable,"second widget","{*","<&menu> | <&cart> %newline() <&menu> | Banana | Apple | - | Avocado","}",0) então o JSX(forma de renderização do React) o renderizará assim: 
+For clarity, suppose you make the following alternative method call `$alternative("first widget 1",1,"{*","Menu | <b>Another field | the Menu","}",$myControlVariable ,"second widget","{*","<&menu> | <&cart> %newline() <&menu> | Banana | Apple | - | Avocado","}",0) then the JSX(way of rendering the React) will render it like this:
 `<AlternativeFeature components={[{component:first widget 1, rule: },{component:second widget, rule: }]} rule={myControlVariable}/>`
 
-Se o arquivo Salt tiver um nome seguido do inicio do UML, por exemplo `@startsalt nomeDoArquivo` o parser usará esse nome para nomear o componente React que será produzido como saída.
+If the Salt file has a name followed by the UML start, for example `@startsalt filename` the parser will use that name to name the React component that will be produced as output.
 
-Para usar o parser do Pegjs faça download do seguinte [Parser in Javascript](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Parser/feature-parser.js),coloque na pasta desejada do seu projeto e depois basta importar normalmente como qualquer outro arquivo em NodeJS e chamar o método parse com uma string como parâmetro. Se a string for inválida de acordo com as regras do Parser, será lançada uma exceção com uma mensagem com mais detalhes do erro em questão.
+To use the Pegjs parser, download the following [Parser in Javascript](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Parser/feature-parser.js), place it in the desired folder of your project and then just import normally like any other file in NodeJS and call the parse method with a string as a parameter. If the string is invalid according to Parser rules, an exception will be thrown with a message with more details of the error in question.
 
-Por exemplo, digamos que eu queira passar como valor de entrada esse arquivo Salt:
+For example, let's say I want to pass this Salt file as an input value:
 
 ```
 @startsalt perfilInclude
@@ -359,7 +360,7 @@ Por exemplo, digamos que eu queira passar como valor de entrada esse arquivo Sal
 }
 @endsalt
 ```
-então no arquivo NodeJS:
+then in the NodeJS file:
 
 ```
 const parser = require("./feature-parser");
@@ -385,7 +386,7 @@ let generatedOutput = parser.parse(myFile);
 console.log(generatedOutput);
 ```
 
-O que por conseguinte gera o seguinte valor de saída pelo parser no terminal:
+Which consequently generates the following output value by the parser in the terminal:
 
 ```
 export default class  perfilInclude extends React Component{
@@ -409,7 +410,7 @@ export default class  perfilInclude extends React Component{
 
 # What functions supports Parser Pegjs.
 
-Essa é uma lista das funções que possui suporte ao Parser disponível por esse projeto pelo [Parser](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Parser/feature.pegjs):
+This is a list of functions that have Parser support available by this project at [Parser](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Parser/feature.pegjs):
 
 - `$mandatory($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket)`
 - `$optional($namecomponent,$multiline, $leftbracket, $midlelement, $rightbracket, $rule)`
@@ -421,7 +422,7 @@ Essa é uma lista das funções que possui suporte ao Parser disponível por ess
 - `$optionalInput($namecomponent,$midlelement,$rule)`
 - `$alternativeInput($namecomponent,$midlelement,$rule,$midlealternative,$namealternative)`
 
-As funções abaixo não possui suporte ao Parser:
+The functions below are not supported by Parser:
 - `$mandatory($multiline, $leftbracket, $midlelement, $rightbracket)`
 - `$optional($multi, $leftbracket, $midlelement, $rightbracket, $rule)`
 - `$alternative($multi,$leftbracket, $midlelement, $rightbracket, $rule, $leftalternative,$midlealternative,$rightalternative, $multialternative)`
@@ -430,3 +431,15 @@ As funções abaixo não possui suporte ao Parser:
 - `$alternativeInput($midlelement, $rule, $midlealternative)`
 - `$optionalJson($json)`
 - `$alternativeJson($json)`
+
+# Learn More
+
+Some useful links to go deeper into the subject and tools used
+
+[PEG.js](https://pegjs.org/)
+[Peg.js Documentation](https://pegjs.org/documentation)
+[PlantUML](https://plantuml.com/)
+[PlantUML PDF Guide](https://plantuml.com/guide)
+[PlantUML Preprocessor](https://plantuml.com/preprocessing)
+[API React Feature](https://github.com/Kadurid/LojaVirtualLPS/tree/dev)
+[React Official Site](https://react.dev/)
