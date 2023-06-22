@@ -158,6 +158,7 @@ function peg$parse(input, options) {
        	<div>
        	${filelines.join("\n\t\t")}
        	</div>
+        )
        }
        
        }` ;

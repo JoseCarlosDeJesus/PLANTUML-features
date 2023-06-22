@@ -325,6 +325,86 @@ Example:
 
 # Parser Pegjs to ReactFeature API
 
+Nesse projeto foi feito um [Parser](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Parser/feature.pegjs) em peg.js(Parser Generator for Javascript). Um Parser é um programa que recebe um valor de entrada, o analisa em partes e o converte em um valor de saída de acordo com certas regras definidas pelo parser em específico. O Parser feito tem o intuito de fornecer uma estrutura de código de um componente de classe em React para depois ser preenchido de acordo com as regras e especificações do desenvolvedor para torná-lo funcional para a [API ReactFeature](https://github.com/Kadurid/LojaVirtualLPS/tree/dev) e ser compilado via o framework Frontend React.
+
+Desse modo, o intuito desse parser é transformar uma chamada dos métodos mandatory,optional e alternative apresentados e transformá-los em uma chamada de um dos componentes correspondentes da API React Feature: "<MandatoryFeature/>","<OptionalFeature/>" ou "<AlternativeFeature/>".Para exemplificar, digamos que eu chamei o método mandatory no Salt da seguinte forma `$optional("barraPesquisa",0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer)`, o parser o traduzirá assim para o ReactFeature:
+
+`<OptionalFeature component=barraPesquisa rules={aparecer}/>`
+
+Assim, os parâmetros dessas funções $namecomponent e $namealternative será interpretado como o nome do componente a ser renderizado por esse componente do ReactFeature e o parâmetro $rule como a regra de renderização desse componente pelo ReactFeature no caso de ser os métodos optional ou alternative.Caso seja um método JSON que está sendo chamado o nome do parâmetro do tipo JSON será usado o nome dele no lugar do parâmetro $namecomponent.
+
+Para maior clareza, suponhamos que foi feita a seguinte chamada de método alternative `$alternative("first widget 1",1,"{*","Menu | <b>Another field | the Menu","}",$myControlVariable,"second widget","{*","<&menu> | <&cart> %newline() <&menu> | Banana | Apple | - | Avocado","}",0) então o JSX(forma de renderização do React) o renderizará assim: 
+`<AlternativeFeature components={[{component:first widget 1, rule: },{component:second widget, rule: }]} rule={myControlVariable}/>`
+
+Se o arquivo Salt tiver um nome seguido do inicio do UML, por exemplo `@startsalt nomeDoArquivo` o parser usará esse nome para nomear o componente React que será produzido como saída.
+
+Para usar o parser do Pegjs faça download do seguinte [Parser in Javascript](https://github.com/JoseCarlosDeJesus/PLANTUML-features/blob/main/Parser/feature-parser.js),coloque na pasta desejada do seu projeto e depois basta importar normalmente como qualquer outro arquivo em NodeJS e chamar o método parse com uma string como parâmetro. Se a string for inválida de acordo com as regras do Parser, será lançada uma exceção com uma mensagem com mais detalhes do erro em questão.
+
+Por exemplo, digamos que eu queira passar como valor de entrada esse arquivo Salt:
+
+```
+@startsalt perfilInclude
+{
+
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    !$aparecer = 1
+    !$desktop = 0
+
+    $optional("BarraPesquisa",0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer)
+
+    $alternative("menuDesktop",1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil","}",$desktop,"menuNavbar","{*","<&menu> | <&cart> %newline() <&menu> | Produtos | Meu Carrinho | - | Meu Perfil","}",0)
+
+    $mandatory("PerfilUsuario",0,"","Nome:Fulano de Tal %newline() Endereço: Gotham City","")
+}
+@endsalt
+```
+então no arquivo NodeJS:
+
+```
+const parser = require("./feature-parser");
+
+const myFile = `@startsalt perfilInclude
+{
+
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    !$aparecer = 1
+    !$desktop = 0
+
+    $optional("BarraPesquisa",0,"","%chr(34) Pesquise Aqui %chr(34) |","",$aparecer)
+
+    $alternative("menuDesktop",1,"{*","Produtos | <b>Meu Carrinho | Meu Perfil","}",$desktop,"menuNavbar","{*","<&menu> | <&cart> %newline() <&menu> | Produtos | Meu Carrinho | - | Meu Perfil","}",0)
+
+    $mandatory("PerfilUsuario",0,"","Nome:Fulano de Tal %newline() Endereço: Gotham City","")
+}
+@endsalt`;
+
+let generatedOutput = parser.parse(myFile);
+
+console.log(generatedOutput);
+```
+
+O que por conseguinte gera o seguinte valor de saída pelo parser no terminal:
+
+```
+export default class  perfilInclude extends React Component{
+       constructor(props){
+        super();
+       }
+
+       render(){
+        return(
+        <div>
+        <OptionalFeature component=BarraPesquisa rules={aparecer}/>
+                <AlternativeFeature components={[{component:menuDesktop, rule: },{component:menuNavbar, rule: }]} rule={desktop}/>
+                <MandatoryFeature component=PerfilUsuario/>
+        </div>
+        )
+       }
+
+       }
+```
 
 
 # What functions supports Parser Pegjs.

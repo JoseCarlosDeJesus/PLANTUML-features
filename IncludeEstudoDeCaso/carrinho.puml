@@ -1,6 +1,5 @@
 @startsalt carrinhoInclude
 {S
-   
     !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
 
     !$aparecer = 0

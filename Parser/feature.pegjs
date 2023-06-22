@@ -11,6 +11,7 @@ plantumlfile = noise "@startsalt" diagram:namedDiagram openSaltBracket newline f
  	<div>
  	${filelines.join("\n\t\t")}
  	</div>
+  )
  }
  
  }` ;
