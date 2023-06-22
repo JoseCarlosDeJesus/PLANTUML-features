@@ -436,10 +436,10 @@ The functions below are not supported by Parser:
 
 Some useful links to go deeper into the subject and tools used
 
-[PEG.js](https://pegjs.org/)
-[Peg.js Documentation](https://pegjs.org/documentation)
-[PlantUML](https://plantuml.com/)
-[PlantUML PDF Guide](https://plantuml.com/guide)
-[PlantUML Preprocessor](https://plantuml.com/preprocessing)
-[API React Feature](https://github.com/Kadurid/LojaVirtualLPS/tree/dev)
-[React Official Site](https://react.dev/)
+- [PEG.js](https://pegjs.org/)
+- [Peg.js Documentation](https://pegjs.org/documentation)
+- [PlantUML](https://plantuml.com/)
+- [PlantUML PDF Guide](https://plantuml.com/guide)
+- [PlantUML Preprocessor](https://plantuml.com/preprocessing)
+- [API React Feature](https://github.com/Kadurid/LojaVirtualLPS/tree/dev)
+- [React Official Site](https://react.dev/)
