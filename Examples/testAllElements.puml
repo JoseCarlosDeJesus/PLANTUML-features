@@ -9,6 +9,7 @@
     $mandatory(0,(X),checked radio,"")
     $mandatory(0,[],Unchecked box,"")
     $mandatory(0,[X],checked box, "")
+    $mandatory(0,'"',"input?", '"')
     $mandatoryInput(Enter text here)
     $mandatory(0,^,This is a droplist,^)
 
