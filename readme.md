@@ -47,9 +47,9 @@ Note: if you want to use another function available in another file available in
 
 Thus, we have to determine from which criteria we build these reusable artifacts, for this we use the concept of *Variability* and *Domain Engineering of an SPL*:
 
-***Variabilidade:*** Software variability is the ability of a software system or artifact to be efficiently extended, modified, customized or configured for a particular context.
+***Variability:*** Software variability is the ability of a software system or artifact to be efficiently extended, modified, customized or configured for a particular context.
 
-***Engenharia de Domínio para desenvolvimento de SPL:*** process of developing reusable software artifacts for a domain. (CZARNECKI; EISENECKER., 2000).
+***Domain Engineering for the development of SPL:*** process of developing reusable software artifacts for a domain. (CZARNECKI; EISENECKER., 2000).
 
 Among these reusable artifacts of an SPL are the Feature Model and the Features:
 
