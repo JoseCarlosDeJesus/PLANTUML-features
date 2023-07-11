@@ -1,0 +1,12 @@
+@startuml
+
+(*) --> "Prototipação de interface gráfica no PlantUML Salt"
+--> "Escolher a relação de feature desejada para cada elemento visual do Salt"
+-->"Criar um projeto React utilizando a API ReactFeature"
+-->"Instalar o Parser desenvolvido"
+-->"Coloque o texto do diagrama em uma variável NodeJs"
+-->"Utilizar o Parser em um Arquivo NodeJs"
+-->"Adaptar o código prévio gerado pelo Parser"
+-->(*)
+
+@enduml

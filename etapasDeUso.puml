@@ -1,0 +1,13 @@
+@startuml
+
+(*) --> "Prototipação de interface gráfica no PlantUML Salt"
+-->[Importar as funções de relações de feature no protótipo] "Prototipar os elementos visuais do protótipo a partir de chamadas dos métodos mandatory,alternative e optional"
+-->[Criar projeto react:npx create-react-app my-app e instalar a API ReactFeature] "Criar um projeto React utilizando a API ReactFeature"
+--> [Instalar o parser no projeto: npm install feature-model-parser] "criar um arquivo NodeJs importando o parser"
+--> [const featureModelParser= require('feature-model-parser')]"Colocar todo o texto do protótipo a ser convertido em componente ReactFeature em uma variável string no código NodeJs"
+-->[let myDiagram =`put your diagram text here`;]"Utilizar o método parse() do feature-model-parser com a string contendo o diagrama como parâmetro."
+-->[reactFeatureComponent= featureModelParser.parse(myDiagram);]"Utilizar o conteúdo da variável com a estrutura do componente ReactFeature para gerar um novo componente de classe do React"
+-->"Adaptar o componente React gerado para adequar-se as regras de negócio e renderizar elementos visuais a partir dos parâmetros gerados no código"
+-->(*)
+
+@enduml
