@@ -1,7 +1,7 @@
 start = plantumlfile
 
 plantumlfile = noise "@startsalt" diagram:namedDiagram openSaltBracket newline filelines:umllines "}" newline noise "@endsalt" noise {
- return `export default class ${diagram} extends React Component{
+ return `export default class ${diagram} extends React.Component{
  constructor(props){
  	super();
  }

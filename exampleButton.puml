@@ -1,0 +1,8 @@
+@startsalt ExampleButton
+{
+    !include https://raw.githubusercontent.com/JoseCarlosDeJesus/PLANTUML-features/main/EstudoDeCasoFeature/definitivefeature.puml
+
+    $mandatory("Button",0,"[","Meu botao fofinho","]")
+
+}
+@endsalt
