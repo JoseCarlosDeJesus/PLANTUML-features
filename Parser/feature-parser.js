@@ -148,7 +148,7 @@ function peg$parse(input, options) {
       peg$c4 = "@endsalt",
       peg$c5 = peg$literalExpectation("@endsalt", false),
       peg$c6 = function(diagram, filelines) {
-       return `export default class ${diagram} extends React Component{
+       return `export default class ${diagram} extends React.Component{
        constructor(props){
        	super();
        }
